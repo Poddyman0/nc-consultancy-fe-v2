@@ -46,7 +46,7 @@
         <div class="an-event-container">
         </div>
    
-        
+
         <button class="btn btn-primary" id="authorize_button" onclick="handleAuthClick()">Authorize Google Callendar</button>
         <button class="btn btn-primary" id="signout_button" onclick="handleSignoutClick()">Sign Out of Google Callendar</button>
         <pre id="content" style="white-space: pre-wrap;"></pre>
@@ -127,7 +127,7 @@
             }
             document.getElementById('signout_button').style.visibility = 'visible';
             document.getElementById('authorize_button').innerText = 'Refresh';
-            await listUpcomingEvents();
+            //await listUpcomingEvents();
             await createEvent()
           };
     
