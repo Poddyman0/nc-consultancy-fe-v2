@@ -1,0 +1,51 @@
+
+front end:
+
+ront end:
+- fix cors issue.
+- website needs to be hosted before google o auth works. see: https://developers.google.com/calendar/api/quickstart/js
+Authorize credentials for a web application
+- must be uploaded to railway (FE only in one made. - change node version)
+- change fetch requests to use correct params or body in back end.
+
+
+- The app should clearly communicate errors to users, if they occur, or if content is still loading. The design should be clear and obvious as to how an event can be created or signed up for.
+- mobile responsive
+- accessible
+- if anyone signed up, asnyone can add an event they've signed up to for their personal callendar. You will need to sign up for services, such as Google Calendar API, on a free, developer account.
+- tests (jest) - front end only
+- hosted for free (front end)
+- read me documentation (what coded and how)
+
+test user:
+internal: 
+email: adam.apple@outlook.com
+password: Asdf5678%
+id: 662b78f7227520c132110592
+
+external:
+email: eve.electra@yahoo.com
+password: Tyui1234!
+id: 662b78f7227520c132110597
+
+
+test event:
+id: 662b78f7227520c1321105a1
+
+
+
+/// done ///
+railway mongodb:
+mongodb://mongo:DXuIYjYEGOKOtKWdvrscuFMQnEXicDwR@viaduct.proxy.rlwy.net:16106
+mongo db: 
+user: nc-consultancy-be-mongo-db-login
+pass: nc-consultancy-be-mongo-db-login
+database name: nc_consultancy_be_mongodb
+connection string: mongodb+srv://nc-consultancy-be-mongo-db-login:nc-consultancy-be-mongo-db-login@cluster0.rgsbbcg.mongodb.net/nc_consultancy_be_mongodb?retryWrites=true&w=majority&appName=Cluster0
+connection string alt: mongodb+srv://nc-consultancy-be-mongo-db-login:nc-consultancy-be-mongo-db-login@cluster0.rgsbbcg.mongodb.net/nc_consultancy_be_mongodb
+
+
+
+
+
+

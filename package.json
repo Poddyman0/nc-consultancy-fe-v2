@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "git": "^0.1.5",
+    "http-server": "^14.1.1",
+    "node": "16.x"
+  },
+  "scripts": {
+    "start": "http-server -o"
+  }
+}
+{
+  "dependencies": {
+    "git": "^0.1.5",
+    "http-server": "^14.1.1",
+    "node": "16.x"
+  },
+  "scripts": {
+    "start": "http-server -o"
+  }
+}

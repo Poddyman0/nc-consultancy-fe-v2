@@ -1,0 +1,144 @@
+.footer-container {
+    background-color: rgb(6, 112, 151);
+    width: 100vw;
+    font-family: "Roboto", sans-serif;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.phone-email-container {
+    display: flex;
+    justify-content: left;
+}
+.footer-icon {
+    width: 40px;
+    padding: 0;
+    margin: 0;
+}
+.phone-email-container {
+    display: flex;
+    justify-content: left;
+}
+
+.update-profile-form {
+    padding-top: 10vh;
+    padding: 10vh
+}
+
+/*laptop*/
+@media (min-width: 1180px) { 
+    .footer-left {
+        width: 48%; /* 33.33% width for each item */
+        flex-basis: 48%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+    }
+    .footer-right {
+        width: 48%; /* 33.33% width for each item */
+        flex-basis: 48%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+    }
+    .footer-title {
+        font-family: "Roboto", sans-serif;
+        color: white;
+    }
+    .footer-text {
+        font-family: "Roboto", sans-serif;
+        color: white;
+        font-size: 22px;
+    }
+    .footer-right {
+        width: 48%; /* 33.33% width for each item */
+        flex-basis: 48%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+    }
+    .footer-picture {
+        background-color: white;
+        width: 100%;
+        height: auto;
+    }
+
+}
+/*tablet*/
+@media (max-width: 1180px) {
+    .footer-left {
+        width: 48%; /* 33.33% width for each item */
+        flex-basis: 48%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+    }
+    .footer-right {
+        width: 48%; /* 33.33% width for each item */
+        flex-basis: 48%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+    }
+    .footer-title {
+        font-family: "Roboto", sans-serif;
+        color: white;
+    }
+    .footer-text {
+        font-family: "Roboto", sans-serif;
+        color: white;
+        font-size: 18px;
+    }
+    .footer-right {
+        width: 48%; /* 33.33% width for each item */
+        flex-basis: 48%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+    }
+    .footer-picture {
+        background-color: white;
+        width: 100%;
+        height: auto;
+    }
+
+}
+/*phone*/
+@media (max-width: 855px) {  
+    .footer-left {
+        width: 99%; /* 33.33% width for each item */
+        flex-basis: 99%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+        margin: 1%; 
+        font-size: 50px;
+    }
+    .footer-right {
+        width: 99%; /* 33.33% width for each item */
+        flex-basis: 99%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+        margin: 1%
+
+    }
+    .footer-title {
+        font-family: "Roboto", sans-serif;
+        color: white;
+        font-size: 50px;
+        text-align: center;
+    }
+    .footer-text {
+        font-family: "Roboto", sans-serif;
+        color: white;
+        font-size: 30px;
+    }
+    .footer-icon-container {
+        display: flex;
+        justify-content: space-evenly;
+        
+    }
+    .footer-right {
+        width: 99%; /* 33.33% width for each item */
+        flex-basis: 99%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+        margin: 1%
+
+    }
+    .footer-picture {
+        background-color: white;
+        position: absolute;
+        bottom: 100;
+        left: 0;
+        width: 100vw;
+        height: auto;
+    }
+}

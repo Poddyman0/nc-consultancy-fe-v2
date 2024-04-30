@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="signUpStyle.css">
+  </head>
+<body>
+    <script src="signUpForm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg bg-light fixed-top">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">Events Platform</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+            <li class="nav-item">
+                <a class="nav-link"  href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="events.html">Events</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="profile.html">Profile</a>
+          </li>
+            <li class="nav-item">
+                <a class="nav-link" href="signInForm.html">Sign In</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="signUpForm.html">Sign Up</a>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+    <div class="window-container">
+        <div class="left-sign-up">
+            <div class="translucent-box">
+                    <h1 class="sign-in-title">
+                        Events Platform
+                    </h1>
+            </div>
+        </div>
+        <div class="right-sign-up">
+            <div class="middle-sign-up">
+                <h1 class="form-heading">Sign Up</h1>
+                    <form id="middle-container-sign-up">
+                            <div class="form-group">
+                                <label for="first-name-sign-up">First Name:</label>
+                                <input type="text" class="form-control" id="first-name-sign-up" placeholder="Enter first name" required>
+                                <div class="invalid-feedback sign-up-form-fist-name-feedback">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="second-name-sign-up">Second Name:</label>
+                                <input type="text" class="form-control" id="second-name-sign-up" placeholder="Enter second name" required>
+                                <div class="invalid-feedback sign-up-form-second-name-feedback">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="dob-sign-up">Date Of Birth:</label>
+                                <input type="date" class="form-control" id="dob-sign-up" placeholder="Enter second name" required>
+                                <div class="invalid-feedback sign-up-form-DOB-feedback">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="telephone-sign-up">Phone Number:</label>
+                                <input type="tel" class="form-control" id="telephone-sign-up" placeholder="Enter phone number" required>
+                                <div class="invalid-feedback sign-up-form-telephone-feedback">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="address-number-sign-up">House Number:</label>
+                                <input type="text" class="form-control" id="address-number-sign-up" placeholder="Enter your house number" required>
+                                <div class="invalid-feedback sign-up-address-number-feedback">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="address-street-sign-up">Street Name:</label>
+                                <input type="text" class="form-control" id="address-street-sign-up" placeholder="Enter your street name" required>
+                                <div class="invalid-feedback sign-up-street-feedback">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="address-city-sign-up">City:</label>
+                                <input type="text" class="form-control" id="address-city-sign-up" placeholder="Enter your city" required>
+                                <div class="invalid-feedback sign-up-city-feedback">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="address-county-sign-up">County:</label>
+                                <input type="text" class="form-control" id="address-county-sign-up" placeholder="Enter your county" required>
+                                <div class="invalid-feedback sign-up-county-feedback">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="address-country-sign-up">Country:</label>
+                                <input type="text" class="form-control" id="address-country-sign-up" placeholder="Enter your country" required>
+                                <div class="invalid-feedback sign-up-country-feedback">
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <label for="address-post-code-sign-up">Post Code:</label>
+                                <input type="text" class="form-control" id="address-post-code-sign-up" placeholder="Enter your post code" required>
+                                <div class="invalid-feedback address-post-code-sign-up-feedback">
+                                </div>
+                              </div>
+                            <div class="form-group">
+                              <label for="email-sign-up">Email:</label>
+                              <input type="email" class="form-control" id="email-sign-up" placeholder="Enter email" required>
+                              <div class="invalid-feedback sign-up-form-email-feedback">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="password-sign-up">Password:</label>
+                              <input type="password" class="form-control" id="password-sign-up" placeholder="Enter password" required>
+                              <div class="invalid-feedback sign-up-form-password-feedback">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password-confirm-sign-up">Confirm Password:</label>
+                                <input type="password" class="form-control" id="password-confirm-sign-up" placeholder="Confirm password" required>
+                                <div class="invalid-feedback sign-up-form-password-confirm-feedback">
+                                  </div>
+                            </div>
+                            <label for="radio-inline-container-id">Do you work at events platform (internal)? Or are you a customer at events platform (external)? </label>
+                            <fieldset class="form-group radio-inline-container" id="radio-inline-container-id">
+                                <div class="custom-control custom-radio-inline">
+                                    <input class="custom-control-input" type="radio" name="roleRadio" id="internal-sign-up" value="internal">
+                                    <label class="custom-control-label" for="internal-sign-up">
+                                    Internal
+                                    </label>
+                                </div>
+                                <div class="custom-control custom-radio-inline">
+                                    <input class="custom-control-input" type="radio" name="roleRadio" id="external-sign-up" value="external">
+                                    <label class="custom-control-label" for="external-sign-up">
+                                    External
+                                    </label>
+                                </div>
+                            </fieldset>
+                            <div class="sign-up-form-role-feedback">
+                            </div>
+                            <br>
+                            <div class="form-group">
+                              <label for="payment-name-sign-up">Card Holders Name:</label>
+                              <input type="text" class="form-control" id="payment-name-sign-up" placeholder="Enter card holder name" required>
+                              <div class="invalid-feedback payment-name-sign-up-feedback">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="payment-bank-name-sign-up">Bank Name:</label>
+                              <input type="text" class="form-control" id="payment-bank-name-sign-up" placeholder="Enter bank name" required>
+                              <div class="invalid-feedback payment-bank-name-sign-up-feedback">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="payment-card-number-sign-up">Card Number:</label>
+                              <input type="number" class="form-control" id="payment-card-number-sign-up" placeholder="Enter card number" required>
+                              <div class="invalid-feedback payment-card-number-sign-up-feedback">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="payment-expire-sign-up">Card Expirey Date:</label>
+                              <input type="text" class="form-control" id="payment-expire-sign-up" placeholder="Enter card expirey date" required>
+                              <div class="invalid-feedback payment-expire-sign-up-feedback">
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="payment-CVV-sign-up">Card CVV Number:</label>
+                              <input type="number" class="form-control" id="payment-CVV-sign-up" placeholder="Enter card CVV number" required>
+                              <div class="invalid-feedback payment-CVV-sign-up-feedback">
+                              </div>
+                            </div>
+                            <div id="sign-up-success">
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary btn-sign-up" id="btn-sign-up">Sign Up</button>
+                            <br>
+                            <p></p>
+                            <div id="sign-in-form-button-container">
+                              <a type="button" class="btn btn-primary btn-sign-up" href="/signInForm.html">Sign In</a>
+                            </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer-container">
+      <div class="footer-left">
+          <h1 class="footer-title">Contact Us</h1>
+          <div class="footer-text">
+              Please get in touch if you have any questions.
+              <br>
+              <br>
+              123 Example Lane, Somewhere Street, Query County, Hingland
+              <br>
+              <br>
+              <div class="phone-email-container">
+                  <img class="footer-icon" src="./icons/phone.svg" alt="telephone icon"> 
+                  <p class="telephone-number">01234567891</p>
+              </div>
+              <br>
+              <div class="phone-email-container">
+                  <img class="footer-icon" src="./icons/email-outline.svg" alt="email icon"> 
+                  <p class="email">email@address.com</p>
+              </div>
+          </div>
+          <div class="footer-icon-container">
+              <a href="./index.html" class="footer-icon-btn"><img class="footer-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-plain.svg" alt="linkedin icon"></a>
+              <a href="./index.html" class="footer-icon-btn"><img class="footer-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/twitter/twitter-original.svg" alt="twitter icon"/></a>
+          </div>
+      </div>
+      <div class="footer-right">
+          <img class="footer-picture"  src="./icons/avatar-svgrepo-com.svg" alt="profile picture">
+      </div>
+</div>
+</body>
+</html>

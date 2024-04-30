@@ -1,0 +1,293 @@
+body {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.window-container {
+    display: flex;
+    height: 100%;
+    width: 100%l
+}
+
+.left-sign-in {
+    box-sizing: border-box;
+    width: 30%;
+    background-color: rgba(117, 117, 233, 0.958);
+    height: 100vh;
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
+.left-sign-up {
+    box-sizing: border-box;
+    width: 30%;
+    background-color: rgba(117, 117, 233, 0.958);
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
+.right-sign-in {
+    box-sizing: border-box;
+    width: 70%;
+    display: flex;
+    height: 100vh;
+    background-color: rgb(237, 236, 236);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.right-sign-up {
+    box-sizing: border-box;
+    width: 70%;
+    display: flex;
+    height: 100%;
+    background-color: rgb(237, 236, 236);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+
+#middle-container-sign-in {
+    display: flex;
+    flex-direction: column;
+    font-style: bold;
+}
+
+
+
+
+.middle-sign-in {
+    background-color: white;
+    padding: 5%;
+    box-shadow: 0 5px 10px rgba(72, 72, 72, 0.49); 
+    z-index: 1;
+    width: 100%;
+    padding-bottom: 8vh
+
+}
+
+
+.middle-sign-up {
+    background-color: white;
+    padding: 5%;
+    box-shadow: 0 5px 10px rgba(72, 72, 72, 0.49); 
+    z-index: 1;
+    width: 100%;
+    padding-bottom: 8vh;
+    height: 100%
+
+}
+
+label {
+    color: rgb(93, 93, 93);
+    padding-top: 20px;
+}
+
+
+.italic {
+    font-style: italic;
+}
+
+
+img {
+    width: 8vh
+}
+
+.sign-in-title {
+    font-size: 6vh;
+}
+
+
+.translucent-box {
+    background-color: rgba(0, 0, 0, 0.495);
+}
+
+
+
+.form-heading {
+    font-size: 150%;
+}
+
+#error-message {
+    color: red;
+    font-size: 12px;
+}
+
+#sign-up-form-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#sign-in-form-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn-sign-in {
+    width: 30%;
+}
+
+.btn-sign-up {
+    width: 47%;
+}
+
+.radio-inline-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.sign-up-form-role-feedback {
+    color: red;
+}
+
+.footer-container {
+    background-color: rgb(6, 112, 151);
+    width: 100vw;
+    font-family: "Roboto", sans-serif;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.phone-email-container {
+    display: flex;
+    justify-content: left;
+}
+.footer-icon {
+    width: 40px;
+    padding: 0;
+    margin: 0;
+}
+.phone-email-container {
+    display: flex;
+    justify-content: left;
+}
+
+/*laptop*/
+@media (min-width: 1180px) { 
+    .footer-left {
+        width: 48%; /* 33.33% width for each item */
+        flex-basis: 48%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+    }
+    .footer-right {
+        width: 48%; /* 33.33% width for each item */
+        flex-basis: 48%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+    }
+    .footer-title {
+        font-family: "Roboto", sans-serif;
+        color: white;
+    }
+    .footer-text {
+        font-family: "Roboto", sans-serif;
+        color: white;
+        font-size: 22px;
+    }
+    .footer-right {
+        width: 48%; /* 33.33% width for each item */
+        flex-basis: 48%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+    }
+    .footer-picture {
+        background-color: white;
+        width: 100%;
+        height: auto;
+    }
+
+}
+/*tablet*/
+@media (max-width: 1180px) {
+    .footer-left {
+        width: 48%; /* 33.33% width for each item */
+        flex-basis: 48%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+    }
+    .footer-right {
+        width: 48%; /* 33.33% width for each item */
+        flex-basis: 48%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+    }
+    .footer-title {
+        font-family: "Roboto", sans-serif;
+        color: white;
+    }
+    .footer-text {
+        font-family: "Roboto", sans-serif;
+        color: white;
+        font-size: 18px;
+    }
+    .footer-right {
+        width: 48%; /* 33.33% width for each item */
+        flex-basis: 48%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+    }
+    .footer-picture {
+        background-color: white;
+        width: 100%;
+        height: auto;
+    }
+
+}
+/*phone*/
+@media (max-width: 855px) {  
+    .footer-left {
+        width: 99%; /* 33.33% width for each item */
+        flex-basis: 99%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+        margin: 1%; 
+        font-size: 50px;
+    }
+    .footer-right {
+        width: 99%; /* 33.33% width for each item */
+        flex-basis: 99%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+        margin: 1%
+
+    }
+    .footer-title {
+        font-family: "Roboto", sans-serif;
+        color: white;
+        font-size: 50px;
+        text-align: center;
+    }
+    .footer-text {
+        font-family: "Roboto", sans-serif;
+        color: white;
+        font-size: 30px;
+    }
+    .footer-icon-container {
+        display: flex;
+        justify-content: space-evenly;
+        
+    }
+    .footer-right {
+        width: 99%; /* 33.33% width for each item */
+        flex-basis: 99%; /* Set initial main size to achieve equal width */
+        box-sizing: border-box;
+        margin: 1%
+
+    }
+    .footer-picture {
+        background-color: white;
+        position: absolute;
+        bottom: 100;
+        left: 0;
+        width: 100vw;
+        height: auto;
+    }
+}
