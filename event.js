@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 export let eventCallendar = [];
 export let updateEventButtonExport;
 export let signUpToEventButtonExport;
-
-
+export let event;
 
 function loadEvent () {
     const eventDisplay = document.querySelector('.an-event-container')
@@ -45,6 +44,7 @@ function loadEvent () {
                     event_atendees: response.eventAtendees,
     
                 }
+                event = response
 
                     if (profileSignedIn.role = "inernal") {
                         let aEventToDisplay = document.createElement('div')

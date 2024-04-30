@@ -3,8 +3,6 @@ front end:
 
 ront end:
 - fix cors issue.
-- website needs to be hosted before google o auth works. see: https://developers.google.com/calendar/api/quickstart/js
-Authorize credentials for a web application
 - must be uploaded to railway (FE only in one made. - change node version)
 - change fetch requests to use correct params or body in back end.
 

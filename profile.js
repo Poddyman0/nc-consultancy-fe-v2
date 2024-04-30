@@ -3,73 +3,7 @@ import {eventCallendar} from 'event.js'
 
 document.addEventListener('DOMContentLoaded', function() {
     loadProfile()
-    googleCallendar()
 })
-
-//do CRUD for google callendar (use all data i have on events)
-function googleCallendar() {
-    document.querySelector('#add-events-to-gcallendar').addEventListener('click', function() {
- fetch('POST https://www.googleapis.com/calendar/v3/calendars/primary/events', {
-        "summary": "Google I/O 2015",
-        "location": "800 Howard St., San Francisco, CA 94103",
-        "description": "A chance to hear more about Google's developer products.",
-        "end": {
-          "dateTime": "2015-05-28T17:00:00-07:00",
-          "timeZone": "America/Los_Angeles"
-          
-        },
-        "start": {
-          "dateTime": "2015-05-28T09:00:00-07:00",
-          "timeZone": "America/Los_Angeles"
-          
-        },
-        "recurrence": [
-          "RRULE:FREQ=DAILY;COUNT=2"
-          
-        ],
-        "attendees": [
-          {
-            "email": "lpage@example.com"
-            
-          },
-          {
-            "email": "sbrin@example.com"
-            
-          }
-          
-        ],
-        "reminders": {
-          "useDefault": false,
-          "overrides": [
-            {
-              "method": "email",
-              "minutes": 1440
-            },
-            {
-              "method": "popup",
-              "minutes": 10
-            }
-            
-          ]
-        }
- })
-    .then(function(response) {
-        return response.json()
-    })
-    .then(function(response) {
-        // Refer to the JavaScript quickstart on how to setup the environment:
-        // https://developers.google.com/calendar/quickstart/js
-        // Change the scope to 'https://www.googleapis.com/auth/calendar' and delete any
-        // stored credentials.
-
-      
-
-
-        console.log(response)
-    })
-})
-}
-
 
 function loadProfile () {
     updateEventsInvitedTo()
