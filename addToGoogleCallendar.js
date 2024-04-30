@@ -1,5 +1,7 @@
 import {event}  from './event.js'
 
+document.addEventListener('DOMContentLoaded', function() {
+
  /* exported gapiLoaded */
     /* exported gisLoaded */
     /* exported handleAuthClick */
@@ -167,3 +169,4 @@ import {event}  from './event.js'
 
           });
     }
+})
