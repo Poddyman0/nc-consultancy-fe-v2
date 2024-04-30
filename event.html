@@ -47,10 +47,9 @@
         </div>
    
         <div class="googleControlls">
-            <button class="btn btn-primary" id="authorize_button" onclick="handleAuthClick()">Authorize Google Callendar</button>
+            <button class="btn btn-primary" id="authorize_button" onclick="handleAuthClick()">Add Event To Google Callendar</button>
             <button class="btn btn-primary" id="signout_button" onclick="handleSignoutClick()">Sign Out of Google Callendar</button>
-            <pre id="content"></pre>
-
+            <button class="btn btn-primary" id="content">Link To Event Created On Google Callendar</button>
         </div>
 
         
@@ -77,6 +76,8 @@
     
         document.getElementById('authorize_button').style.visibility = 'hidden';
         document.getElementById('signout_button').style.visibility = 'hidden';
+        document.getElementById('content').style.visibility = 'hidden';
+
     
         /**
          * Callback after api.js is loaded.
@@ -129,7 +130,7 @@
               throw (resp);
             }
             document.getElementById('signout_button').style.visibility = 'visible';
-            document.getElementById('authorize_button').innerText = 'Refresh';
+            document.getElementById('content').style.visibility = 'visible';
             await createEventGoogleCallendar()
           };
     
@@ -151,7 +152,7 @@
           if (token !== null) {
             google.accounts.oauth2.revoke(token.access_token);
             gapi.client.setToken('');
-            document.getElementById('content').innerText = '';
+            document.getElementById('content').style.visibility = 'hidden';
             document.getElementById('authorize_button').innerText = 'Authorize';
             document.getElementById('signout_button').style.visibility = 'hidden';
           }
@@ -186,7 +187,9 @@
               request.execute(function(event) {
     
                 //appendPre('Event created: ' + event.htmlLink);
-                document.getElementById('content').innerHTML = `Event Created: <a href="${event.htmlLink}" style="text-decoration: underline; color: blue;" onmouseover="this.style.cursor='pointer'">Link To Event Created On Google Callendar</a>`;    
+                document.getElementById('content').addEventListener('click', function() {
+                    window.location.href = event.htmlLink 
+                }) 
     
               });
         }
