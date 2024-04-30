@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Create Event Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="createEventStyle.css">
+  </head>
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script src="/createEventForm.js"></script>
+  <nav class="navbar navbar-expand-lg bg-light fixed-top">
+      <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">Events Platform</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+              <a class="nav-link"  href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="events.html">Events</a>
+        </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html">Profile</a>
+        </li>
+          <li class="nav-item">
+              <a class="nav-link" href="signInForm.html">Sign In</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="signUpForm.html">Sign Up</a>
+          </li>
+          </ul>
+      </div>
+      </div>
+  </nav>
+    
+    <h1>create event form</h1>
+    <form>
+
+        <form id="middle-container-create-event" class="internal-see-form">
+            <div class="form-group">
+                <label for="create-event-organiser">Event Organiser:</label>
+                <input type="text" class="form-control" id="create-event-organiser" placeholder="Enter event name" required>
+                <div class="invalid-feedback create-event-organiser-feedback">
+                </div>
+              </div>
+            <div class="form-group">
+                <label for="create-event-name">Event Name:</label>
+                <input type="text" class="form-control" id="create-event-name" placeholder="Enter event name" required>
+                <div class="invalid-feedback create-event-name-feedback">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="create-event-description">Event Description:</label>
+                <input type="text" class="form-control" id="create-event-description" placeholder="Enter event description" required>
+                <div class="invalid-feedback create-event-description-feedback">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="create-event-start-date">Event Start Date:</label>
+                <input type="date" class="form-control" id="create-event-start-date" placeholder="Enter event start date" required>
+                <div class="invalid-feedback create-event-start-date-feedback">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="create-event-start-time">Event Start Time:</label>
+                <input type="time" class="form-control" id="create-event-start-time" placeholder="Enter event start date" required>
+                <div class="invalid-feedback create-event-start-time-feedback">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="create-event-end-date">Event End Date:</label>
+                <input type="date" class="form-control" id="create-event-end-date" placeholder="Enter event end date" required>
+                <div class="invalid-feedback create-event-end-date-feedback">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="create-event-end-time">Event End Time:</label>
+                <input type="time" class="form-control" id="create-event-end-time" placeholder="Enter event end date" required>
+                <div class="invalid-feedback create-event-end-time-feedback">
+                </div>
+              </div>
+              <p>Event Location:</p>
+              <div class="form-group">
+                <label for="create-event-address-number">Building Number:</label>
+                <input type="text" class="form-control" id="create-event-address-number" placeholder="Enter your house number" required>
+                <div class="invalid-feedback create-event-address-number-feedback">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="create-event-street">Street Name:</label>
+                <input type="text" class="form-control" id="create-event-street" placeholder="Enter your street name" required>
+                <div class="invalid-feedback create-event-street-feedback">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="create-event-city">City:</label>
+                <input type="text" class="form-control" id="create-event-city" placeholder="Enter your city" required>
+                <div class="invalid-feedback create-event-city-feedback">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="create-event-county">County:</label>
+                <input type="text" class="form-control" id="create-event-county" placeholder="Enter your county" required>
+                <div class="invalid-feedback create-event-county-feedback">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="create-event-country">Country:</label>
+                <input type="text" class="form-control" id="create-event-country" placeholder="Enter your country" required>
+                <div class="invalid-feedback create-event-country-feedback">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="create-event-post-code">Post Code:</label>
+                <input type="text" class="form-control" id="create-event-post-code" placeholder="Enter your post code" required>
+                <div class="invalid-feedback create-event-post-code-feedback">
+                </div>
+              </div>
+
+              <fieldset class="form-group radio-inline-container" id="radio-inline-container-id">
+                <div class="custom-control custom-radio-inline">
+                    <input class="custom-control-input" type="radio" name="pricingRadio" id="pricing-free" value="free">
+                    <label class="custom-control-label" for="pricing-free">
+                    Free
+                    </label>
+                </div>
+                <div class="custom-control custom-radio-inline">
+                    <input class="custom-control-input" type="radio" name="pricingRadio" id="pricing-paid" value="paid">
+                    <label class="custom-control-label" for="pricing-paid">
+                    Paid
+                    </label>
+                </div>
+                <div class="custom-control custom-radio-inline">
+                  <input class="custom-control-input" type="radio" name="pricingRadio" id="pricing-pay-as-you-feel" value="pay-as-you-feel">
+                  <label class="custom-control-label" for="pricing-pay-as-you-feel">
+                  Pay As You Feel
+                  </label>
+              </div>
+            </fieldset>
+            <div class="create-event-pricing-feedback">
+            </div>
+
+              <div class="form-group">
+                <label for="create-event-ticket-price">Price Of Event Ticket:</label>
+                <input type="number" class="form-control" id="create-event-ticket-price" placeholder="Enter price of event tickets" required>
+                <div class="invalid-feedback create-event-ticket-price-feedback">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="create-event-ticket-amount">Amount Of Event Tickets:</label>
+                <input type="number" class="form-control" id="create-event-ticket-amount" placeholder="Enter amount of event tickets." required>
+                <div class="invalid-feedback create-event-ticket-amount-feedback">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="create-event-image">Event Picture:</label>
+                <input type="file" class="form-control" id="create-event-image" accept="image/*" required>
+                <div class="invalid-feedback create-event-image-feedback">
+              </div>
+              <label for="create-event-atendees-container">Atendees: </label>
+              <br>
+              <button id="add-atendee-btn" name="add-atendee-btn" class="btn btn-primary">Add Antendee</button>
+              <br>
+              <div id="create-event-atendees-container">
+              </div>
+              <br>
+              <div id="created-event-feedback">
+              </div>
+              <br>
+              <button id="submit" name="submit" type="submit" class="btn btn-primary btn-create-event">Create Event</button>
+              <br>
+
+
+    </form>
+    
+    <div class="footer-container">
+      <div class="footer-left">
+          <h1 class="footer-title">Contact Us</h1>
+          <div class="footer-text">
+              Please get in touch if you have any questions.
+              <br>
+              <br>
+              123 Example Lane, Somewhere Street, Query County, Hingland
+              <br>
+              <br>
+              <div class="phone-email-container">
+                  <img class="footer-icon" src="./icons/phone.svg" alt="telephone icon"> 
+                  <p class="telephone-number">01234567891</p>
+              </div>
+              <br>
+              <div class="phone-email-container">
+                  <img class="footer-icon" src="./icons/email-outline.svg" alt="email icon"> 
+                  <p class="email">email@address.com</p>
+              </div>
+          </div>
+          <div class="footer-icon-container">
+              <a href="./index.html" class="footer-icon-btn"><img class="footer-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linkedin/linkedin-plain.svg" alt="linkedin icon"></a>
+              <a href="./index.html" class="footer-icon-btn"><img class="footer-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/twitter/twitter-original.svg" alt="twitter icon"/></a>
+          </div>
+      </div>
+      <div class="footer-right">
+          <img class="footer-picture"  src="./icons/avatar-svgrepo-com.svg" alt="profile picture">
+      </div>
+</div>
+</body>
+</html>
