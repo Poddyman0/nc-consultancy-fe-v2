@@ -1,9 +1,14 @@
-import { eventIDToView } from './events.js'
-import {profileSignedIn} from 'signInForm.js'
+//import { eventIDToView } from './events.js'
+import {profileSignedIn} from './signInForm.js'
+import {handleEventButtonClick} from './events.js'
+console.log("event id in event", handleEventButtonClick ())
+
 
 document.addEventListener('DOMContentLoaded', function() {
     loadEvent()
+
 })
+
 
 //add url to below.
 export let eventCallendar = [];

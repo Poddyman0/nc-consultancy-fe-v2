@@ -285,7 +285,6 @@ function signUpForm () {
                 createProfile ()
                 function createProfile () {
                     const createProfileBE = {
-                        profileID: unknown,
                         profilePassword: password.value,
                         profileTelephone: telephone.value,
                         profileEmail: email.value,
@@ -310,16 +309,10 @@ function signUpForm () {
 
                     fetch('http://nc-events-platform-be-v2-production.up.railway.app/platform/profile/post', {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
                         body: JSON.stringify(createProfileBE),
                         })
                         .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Network response was not ok');
-                        }
-                        return response.text();
+                        return response.json();
                         })
                         .then(data => {
                         console.log('Success:', data);

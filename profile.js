@@ -1,11 +1,12 @@
-import {profileIDSignedIn, profileSignedIn } from 'signInForm.js'
-import {eventCallendar} from 'event.js'
+//import {profileIDSignedIn, profileSignedIn } from 'signInForm.js'
+//import {eventCallendar} from 'event.js'
 
 document.addEventListener('DOMContentLoaded', function() {
     loadProfile()
 })
 
 function loadProfile () {
+    const eventsInvitedToContainer = document.querySelector('.events-invited-to')
     updateEventsInvitedTo()
     function updateEventsInvitedTo() {
         getEvents ()
@@ -18,7 +19,7 @@ function loadProfile () {
                     return response.json();
                 })
                 .then(function(response) {
-                    response.forEach(event => {
+                        /*
                         let eventsResponse = {
                             event_id: event.eventID,
                             event_organiser: event.eventOrganiser,
@@ -41,17 +42,55 @@ function loadProfile () {
                             event_atendees: event.eventAtendees,
         
                         }
-                        eventsResponse.event_atendees.forEach(atendee => {
-                            if (atendee.firstName === profileSignedIn.profileFirstName && atendee.secondName === profileSignedIn.profileSecondName && atendee.emailAdresss === profileSignedIn.profileEmail)
-                            eventsInvitedToArray.push(eventsResponse)
-
-                        })
+                        */
+                       response.forEach(event => {
+                            event.eventAtendees.forEach(atendeeID => {
+                                if (atendeeID ==="662b78f7227520c132110598") {
+                                    //change above to profileIDSignedIn
+                                    eventsInvitedToArray.push(event)
+                                    console.log(event)
+                                    let aEventToDisplay = document.createElement('div')
+                                    aEventToDisplay.className = "card"
+                                    aEventToDisplay.id = `an-event-card-${event._id}`
+                                    aEventToDisplay.innerHTML = `
+                                        <img class="card-img-top" src="${event.eventPicture}" alt="Event Picture">
+                                        <div class="card-body">
+                                            <div class="card-title-icon-container">
+                                                <h5 class="card-title">${event.eventName}</h5>
+                                            </div>
+                                            <p class="card-text">Organiser: ${event.eventOrganiser}</p>
+                                            <p class="card-text">Description: ${event.eventDescription}</p>
+                                            <p class="card-text">Start Date: ${event.eventStartDate}</p>
+                                            <p class="card-text">Start Time: ${event.eventStartDate}</p>
+                                            <p class="card-text">End Date: ${event.eventEndDate}</p>
+                                            <p class="card-text">End Time: ${event.eventEndTime}</p>
+                                            <p class="card-text">Location: ${event.eventBuildingNumber}, ${event.eventStreetName}, ${event.eventCity}, ${event.eventCounty}, ${event.eventCountry}, ${event.eventPostCode}</p>
+                                            <p class="card-text">Ticket Price: ${event.eventTicketPrice}</p>
+                                            <p class="card-text">Amount Of Tickets Left: ${event.eventTicketAmount}</p>
+                                            <form class="card-text">
+                                                <label for="add-to-cart-amount">Amount of tickets you want to purchase:</label>
+                                                <input type="number" class="form-control" id="add-to-cart-amount" placeholder="Enter amount of tickets you would like to buy." required>
+                                                <div class="invalid-feedback add-to-cart-amount-feedback"></div>
+                                                <button class="btn btn-primary" id="add-to-cart-button">Add To Event To Callendar And Cart</button>
+                                            </form>
+                                            <button class="btn btn-warning" id="btn-sign-up-to-event">Sign Up To Event</button>
+                                            <button class="btn btn-danger" id="delete-event">Delete Event</button>
+                                            <p id="added-to-cart-feedback"></p>
+                                        </div>
+                                    `
+                                    eventsInvitedToContainer.appendChild(aEventToDisplay)
+                                    return eventsInvitedToArray 
+                                }
+                            })
+                       })
+                    })
+                    .catch(function(err) {
+                        console.log("Error: ", err)
                     });
-                })
-                .catch(function(err) {
-                    console.log("Error: ", err)
-                })
         }
+    }
+}
+/*
 
         const eventsInvitedToContainer = document.querySelector('#events-invited-to').innerHTML
         eventsInvitedToArray.forEach(eventResponse => {
@@ -298,3 +337,4 @@ function loadProfile () {
 
 
 
+*/

@@ -1,19 +1,38 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     loadEvents()
 
 })
 
-export let eventIDToView  = "";
+let eventIDToView = ""
+
+export function handleEventButtonClick(event) {
+    if (event) {
+        eventIDToView = `${event.target.value}`;
+        console.log("has event", eventIDToView);
+        window.location.href = "/event.html";
+        return eventIDToView
+
+    } if (!event) {
+        console.log("no event", eventIDToView)
+        return eventIDToView
+
+    }
+
+}
 
 let eventsDisplay = []
 
 let eventsArray = []
 
-function loadEvents () {
-    const eventDisplay = document.querySelector('.card-container')
 
-    getEvents ()
-    function getEvents () {
+
+function loadEvents () {
+    //console.log("event id in events", eventIDToView)
+
+    const eventDisplay = document.querySelector('.card-container')
+    fetchEvents ()
+    function fetchEvents () {
         fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/events/get`, {
             method: 'GET',
         })
@@ -22,6 +41,7 @@ function loadEvents () {
             })
             .then(function(response) {
                 response.forEach(event => {
+                    /*
                     let eventsResponse = {
                         event_id: event.eventID,
                         event_organiser: event.eventOrganiser,
@@ -44,16 +64,66 @@ function loadEvents () {
                         event_atendees: event.eventAtendees,
     
                     }
-                    eventsArray.push(eventsResponse)
+                    */
+                    eventsArray.push(event)
+                    let aEventToDisplay = document.createElement('div')
+                    aEventToDisplay.className = "card"
+                    aEventToDisplay.id = `event-card-${event._id}`
+                    aEventToDisplay.innerHTML = `
+                        <img class="card-img-top" src="${event.eventPicture}" alt="Event Picture">
+                        <div class="card-body">
+                            <div class="card-title-icon-container">
+                                <h5 class="card-title">${event.eventName}</h5>
+                            </div>
+                        <p class="card-text">Description: ${event.eventDescription}</p>
+                        <p class="card-text">Start Date: ${event.eventStartDate}</p>
+                        <p class="card-text">Event City: ${event.eventCity}</p>
+                        <p class="card-text">Price: £${event.eventTicketPrice}</p>
+                        <button type="button" value="${event._id}" id="btn-event-card-${event._id}" class="btn btn-primary btn-events-info">Event Info</button>
+                        </div>
+                    `
+                    eventDisplay.appendChild(aEventToDisplay)
+
+                    document.getElementById(`btn-event-card-${event._id}`).addEventListener('click', handleEventButtonClick);
+
+
                 });
             })
             .catch(function(err) {
                 console.log("Error: ", err)
             })
-    }
+        }
 
-
-
+}
+/*
+            eventsDisplay = []
+            eventsArray.forEach(event => {
+                /*
+                let aEventToDisplay = document.createElement('div')
+                aEventToDisplay.className = "card"
+                aEventToDisplay.id = `event-card-${event.event_id}`
+                aEventToDisplay.innerHTML = `
+                    <img class="card-img-top" src="${event.event_picture}" alt="Event Picture">
+                    <div class="card-body">
+                        <div class="card-title-icon-container">
+                            <h5 class="card-title">${event.event_name}</h5>
+                        </div>
+                    <p class="card-text">Description: ${event.eventDescription}</p>
+                    <p class="card-text">Start Date: ${event.event_start_date}</p>
+                    <p class="card-text">Event City: ${event.event_city}</p>
+                    <p class="card-text">Price: ${event.event_ticket_price}</p>
+                    <button type="button" value="${event.event_id}" id="btn-event-card-${event.event_id}" class="btn btn-primary btn-events-info">Event Info</button>
+                    </div>
+                `
+                document.querySelector(`#btn-event-card-${event.event_id}`).addEventListener('click', function () {
+                    eventIDToView = `${event.event_id}`
+                    window.location.href = "/event.html"
+                    
+                })
+                eventDisplay.appendChild(aEventToDisplay)
+            
+        
+            })
 
     document.querySelector('#events-search-submit').addEventListener('click', function (event) {
         event.preventDefault()
@@ -206,33 +276,9 @@ function loadEvents () {
             return eventsDisplay;
         }
     })
-    eventsDisplay = []
-    eventsArray.forEach(event => {
-        let aEventToDisplay = document.createElement('div')
-        aEventToDisplay.className = "card"
-        aEventToDisplay.id = `event-card-${event.event_id}`
-        aEventToDisplay.innerHTML = `
-            <img class="card-img-top" src="${event.event_picture}" alt="Event Picture">
-            <div class="card-body">
-                <div class="card-title-icon-container">
-                    <h5 class="card-title">${event.event_name}</h5>
-                </div>
-            <p class="card-text">Description: ${event.eventDescription}</p>
-            <p class="card-text">Start Date: ${event.event_start_date}</p>
-            <p class="card-text">Event City: ${event.event_city}</p>
-            <p class="card-text">Price: ${event.event_ticket_price}</p>
-            <button type="button" value="${event.event_id}" id="btn-event-card-${event.event_id}" class="btn btn-primary btn-events-info">Event Info</button>
-            </div>
-        `
-        document.querySelector(`#btn-event-card-${event.event_id}`).addEventListener('click', function () {
-            eventIDToView = `${event.event_id}`
-            window.location.href = "/event.html"
-            
-        })
-        eventDisplay.appendChild(aEventToDisplay)
+    */
 
-    })
-}
+
 
 
 

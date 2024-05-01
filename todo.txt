@@ -2,18 +2,22 @@
 front end:
 
 ront end:
-- fix cors issue.
-- must be uploaded to railway (FE only in one made. - change node version)
+- export events to event.
+- BE: fix cors issue.
 - change fetch requests to use correct params or body in back end.
+- tests (jest) - front end only
 
 
-- The app should clearly communicate errors to users, if they occur, or if content is still loading. The design should be clear and obvious as to how an event can be created or signed up for.
+- show if content is still loading.
 - mobile responsive
 - accessible
-- if anyone signed up, asnyone can add an event they've signed up to for their personal callendar. You will need to sign up for services, such as Google Calendar API, on a free, developer account.
-- tests (jest) - front end only
+- if anyone signed up, asnyone can add an event they've signed up for to for their callendar.
 - hosted for free (front end)
 - read me documentation (what coded and how)
+
+
+
+
 
 test user:
 internal: 
