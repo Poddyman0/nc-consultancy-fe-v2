@@ -1,5 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
     loadEvents()
+    let tokenClient;
+    let gapiInited = false;
+    let gisInited = false;
+
+    // Fetch API request for gapi.js
+fetch('https://apis.google.com/js/api.js')
+.then(response => response.text())
+.then(scriptText => {
+    // Create script element
+    console.log("gapi", scriptText)
+    gapiLoaded;
+
+    // Append script element to the document's body
+})
+.catch(error => console.error('Error loading gapi.js:', error));
+
+// Fetch API request for GSI client
+fetch('https://accounts.google.com/gsi/client')
+.then(response => response.text())
+.then(scriptText => {
+    // Create script element
+    console.log("gis", scriptText)
+
+    gisLoaded;
+
+    // Append script element to the document's body
+})
+.catch(error => console.error('Error loading GSI client:', error));
+    
+    gapiLoaded
 })
 /*
 let eventIDToView = ""
@@ -28,6 +58,7 @@ let eventsArray = []
 
 //individuals events
 let eventCallendar = []
+
 
 
     /* exported gapiLoaded */
@@ -83,21 +114,7 @@ let eventCallendar = []
     //maybeEnableButtons();
   }
 
-var gapiScript = document.createElement('script');
-gapiScript.src = 'https://apis.google.com/js/api.js';
-gapiScript.async = true;
-gapiScript.defer = true;
-gapiScript.onload = gapiLoaded;
 
-var gisScript = document.createElement('script');
-gisScript.src = 'https://accounts.google.com/gsi/client';
-gisScript.async = true;
-gisScript.defer = true;
-gisScript.onload = gisLoaded;
-
-// Append script elements to the document's head
-document.head.appendChild(gapiScript);
-document.head.appendChild(gisScript);
 
 
 
@@ -111,9 +128,7 @@ function loadEvents() {
                 return response.json();
             })
             .then(function(response) {
-                console.log(response)
                 response.forEach(aEvent => {
-                    console.log(aEvent)
 
                     eventsArray.push(aEvent)
                     let aEventToDisplay = document.createElement('div')
@@ -188,12 +203,13 @@ function loadEvents() {
                         }
                     })
                     const authorizeButton = document.getElementById(`authorize_button-${aEvent._id}`)
-                    authorizeButton.style.visibility = 'hidden';
+                    authorizeButton.style.visibility = 'visible';
                     const signOutButton = document.getElementById(`signout_button-${aEvent._id}`)
                     signOutButton.style.visibility = 'hidden';
                     const eventLinkButton = document.getElementById(`content-${aEvent._id}`)
                     eventLinkButton.style.visibility = 'hidden';
-                      /**
+                    
+                    /**
                      * Enables user interaction after all libraries are loaded.
                      */
                     //function maybeEnableButtons() {
