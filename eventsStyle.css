@@ -7,6 +7,14 @@ body {
     z-index: 10;
 }
 
+.card-btn {
+    width: 100%;
+}
+
+.event-card-title {
+    font-size: 10px;
+}
+
 .triangle-depth {
     width: 100vw;
     height: 60vh;
@@ -14,7 +22,13 @@ body {
     
 }
 
+ul {
+    list-style-type: none;
+}
 
+ol {
+    list-style-type: none;
+}
 
 .header-picture {
     background-color: white;
