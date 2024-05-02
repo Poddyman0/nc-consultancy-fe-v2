@@ -21,6 +21,7 @@ function signInForm() {
 
         fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/profile/get/${emailSignIn}/${passwordSignIn}/signin`, {
             method: 'GET',
+            
         })
         .then(function(response) {
             console.log("json", response)

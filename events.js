@@ -25,76 +25,87 @@ let eventsDisplay = []
 
 let eventsArray = []
 
-
-
-function loadEvents () {
-    //console.log("event id in events", eventIDToView)
-
+function loadEvents() {
     const eventDisplay = document.querySelector('.card-container')
     fetchEvents ()
     function fetchEvents () {
-        fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/events/get`, {
-            method: 'GET',
-        })
+            fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/events/get`, {
+                method: 'GET',
+            })
             .then(function(response) {
                 return response.json();
             })
             .then(function(response) {
-                response.forEach(event => {
-                    /*
-                    let eventsResponse = {
-                        event_id: event.eventID,
-                        event_organiser: event.eventOrganiser,
-                        event_name: event.eventName,
-                        event_description: event.eventDescription,
-                        event_start_date: event.eventStartDate,
-                        event_start_time: event.eventStartTime,
-                        event_end_date: event.eventEndDate,
-                        event_end_time: event.eventEndTime,
-                        event_building_number: event.eventBuildingNumber,
-                        event_street_name: event.eventStreetName,
-                        event_city: event.eventCity,
-                        event_county: event.eventCounty,
-                        event_country: event.eventCountry,
-                        event_post_code: event.eventPostCode,
-                        event_pricing: event.eventPricing,
-                        event_ticket_price: event.eventTicketPrice,
-                        event_ticket_amount: event.eventTicketAmount,
-                        event_picture: event.eventPicture,
-                        event_atendees: event.eventAtendees,
-    
-                    }
-                    */
-                    eventsArray.push(event)
+                response.forEach(aEvent => {
+
+                    eventsArray.push(aEvent)
                     let aEventToDisplay = document.createElement('div')
                     aEventToDisplay.className = "card"
-                    aEventToDisplay.id = `event-card-${event._id}`
+                    aEventToDisplay.id = `event-card-${aEvent._id}`
                     aEventToDisplay.innerHTML = `
-                        <img class="card-img-top" src="${event.eventPicture}" alt="Event Picture">
                         <div class="card-body">
                             <div class="card-title-icon-container">
-                                <h5 class="card-title">${event.eventName}</h5>
+                                <h5 class="card-title">${aEvent.eventName}</h5>
                             </div>
-                        <p class="card-text">Description: ${event.eventDescription}</p>
-                        <p class="card-text">Start Date: ${event.eventStartDate}</p>
-                        <p class="card-text">Event City: ${event.eventCity}</p>
-                        <p class="card-text">Price: £${event.eventTicketPrice}</p>
-                        <button type="button" value="${event._id}" id="btn-event-card-${event._id}" class="btn btn-primary btn-events-info">Event Info</button>
+                        <p class="card-text">Description: ${aEvent.eventDescription}</p>
+                        <p class="card-text">Start Date: ${aEvent.eventStartDate}</p>
+                        <p class="card-text">Start Time: ${aEvent.eventStartTime}</p>
+                        <p class="card-text">End Date: ${aEvent.eventEndDate}</p>
+                        <p class="card-text">End Time: ${aEvent.eventEndTime}</p>
+                        <p class="card-text">Location: ${aEvent.eventBuildingNumber}, ${aEvent.eventStreetName}, ${aEvent.eventCity}, ${aEvent.eventCounty}, ${aEvent.eventCountry}, ${aEvent.eventPostCode}</p>
+                        <p class="card-text">Pricing: ${aEvent.eventPricing}</p>
+                        <p class="card-text">Price: £${aEvent.eventTicketPrice}</p>
+                        <p class="card-text">Amount Of Tickets Left: ${aEvent.eventTicketAmount}</p>
+                        <form class="card-text">
+                                    <label for="add-to-cart-amount">Amount of tickets you want to purchase:</label>
+                                    <input type="number" class="form-control" id="add-to-cart-amount" placeholder="Enter amount of tickets you would like to buy." required>
+                                    <div class="invalid-feedback add-to-cart-amount-feedback"></div>
+                                    <button class="btn btn-warning add-to-cart-button" value="${aEvent}">Add To Event To Callendar And Cart</button>
+                        </form>
+                        <button class="btn btn-danger" id="delete-event">Delete Event</button>
+                        <p id="added-to-cart-feedback"></p>
                         </div>
                     `
+                    //                         <button class="btn btn-warning" value="${aEvent._id}" id="btn-sign-up-to-event">Sign Up To Event</button>
+
+                    //  <img class="card-img-top" src="${event.eventPicture}" alt="Event Picture">
+                    // button to view event: <button type="button" value="${event._id}" id="btn-event-card-${event._id}" class="btn btn-primary btn-events-info">Event Info</button>
+                    // delete event in event.js
                     eventDisplay.appendChild(aEventToDisplay)
 
-                    document.getElementById(`btn-event-card-${event._id}`).addEventListener('click', handleEventButtonClick);
-
-
-                });
+                    // button to view event: document.getElementById(`btn-event-card-${event._id}`).addEventListener('click', handleEventButtonClick);
+                    
+                    const ticketAmountPurchase = document.querySelector('#add-to-cart-amount')
+                    const addToCartAmountFeedback = document.querySelector('.add-to-cart-amount-feedback')
+                    const addedToCartFeedback = document.querySelector('#added-to-cart-feedback')
+                    //const updateEventButton = document.querySelector('#btn-update-event-internal')
+                    //updateEventButtonExport = updateEventButton
+                    //const signUpToEventButton = document.querySelector('#btn-sign-up-to-event')
+                    //signUpToEventButtonExport = signUpToEventButton
+                    addedToCartFeedback.innerHTML = ""
+                    
+                    document.querySelector(`#add-to-cart-button`).addEventListener('click', function (event) {
+                        event.preventDefault()
+                        let eventObj = event.target.value;
+                        if (ticketAmountPurchase.value.length === 0 || ticketAmountPurchase.value > aEvent.eventTicketAmount) {
+                            ticketAmountPurchase.className = "form-control is-invalid"
+                            addToCartAmountFeedback.innerHTML = "Amount of tickets purchased field must not be empty or be greater than the amount of tickets available"
+                        } else {
+                            ticketAmountPurchase.className = "form-control"
+                            addToCartAmountFeedback.innerHTML = ""
+                            addedToCartFeedback.innerHTML = "Event successfully added to cart"
+                            eventCallendar.push(eventObj)
+                        }
+                    });
+                    
             })
             .catch(function(err) {
-                console.log("Error: ", err)
+                console.log("Error: ", err);
             })
-        }
-
+        })
+    }
 }
+
 /*
             eventsDisplay = []
             eventsArray.forEach(event => {

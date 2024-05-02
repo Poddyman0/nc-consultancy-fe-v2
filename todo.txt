@@ -2,8 +2,21 @@
 front end:
 
 ront end:
-- export events to event.
 - BE: fix cors issue.
+needs to be hosted on same domain (if move to BE, change google to use same domane)
+
+on BE:
+do fetch server side. 
+app.post("/api/profile/post", (req, res) -> {
+    const data = functionToCallExternalAPI()
+    res.json(data)
+})
+failing that cors bypass plugin on chrome
+
+
+
+- export from one js file to another. events to event
+
 - change fetch requests to use correct params or body in back end.
 - tests (jest) - front end only
 
