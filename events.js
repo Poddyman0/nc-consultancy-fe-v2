@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     loadEvents()
-    let tokenClient;
-    let gapiInited = false;
-    let gisInited = false;
 
     // Fetch API request for gapi.js
 fetch('https://apis.google.com/js/api.js')
@@ -22,13 +19,11 @@ fetch('https://accounts.google.com/gsi/client')
 .then(scriptText => {
     // Create script element
     console.log("gis", scriptText)
-
     gisLoaded;
 
     // Append script element to the document's body
 })
 .catch(error => console.error('Error loading GSI client:', error));
-    
     gapiLoaded
 })
 /*
@@ -67,8 +62,8 @@ let eventCallendar = []
   /* exported handleSignoutClick */
 
   // TODO(developer): Set to client ID and API key from the Developer Console
-  const CLIENT_ID = '1089595369803-i8rqgq0ql4tnhl8aoh0h7e1729stj569.apps.googleusercontent.com';
-  const API_KEY = 'AIzaSyAb15ND20iMQTKoAAyQWLKO4elU2ybdqOQ';
+  const CLIENT_ID = '1089595369803-8aebmjojlqmos49ifvg049io1e4rpeje.apps.googleusercontent.com';
+  const API_KEY = 'AIzaSyAJklJeZ0-lvOU2qvp8Ae-ycgf8vbyp660';
 
   // Discovery doc URL for APIs used by the quickstart
   const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
