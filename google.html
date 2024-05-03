@@ -8,12 +8,13 @@
     <p>Google Calendar API Quickstart</p>
 
     <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize_button" onclick="handleAuthClick()">Authorize</button>
+    <button id="authorize_button" onclick="handleAuthClick()">Sign In To Google</button>
     <button id="signout_button" onclick="handleSignoutClick()">Sign Out</button>
 
     <pre id="content" style="white-space: pre-wrap;"></pre>
 
     <script type="text/javascript">
+      import { tokenClient, gapiInited, gisInited} from './events.js'
       /* exported gapiLoaded */
       /* exported gisLoaded */
       /* exported handleAuthClick */

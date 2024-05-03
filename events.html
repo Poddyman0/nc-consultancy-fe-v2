@@ -13,7 +13,7 @@
   </head>
 <body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="events.js"></script>
+  <script type="module" src="events.js"></script>
   <nav class="navbar navbar-expand-lg bg-light fixed-top">
       <div class="container-fluid">
       <a class="navbar-brand" href="index.html">Events Platform</a>
@@ -43,6 +43,7 @@
       </div>
       </div>
   </nav>
+
   <div>
     <div class="events-container">
       <div class="events-container-tools">
@@ -57,14 +58,136 @@
         <div class="form-group tools-events-container">
           <button id="sort-by-date" name="sort-by-date" type="button" class="btn btn-primary tools-events">Sort By Date</button>
           <button id="sort-by-price" name="sort-by-price" type="button" class="btn btn-primary tools-events">Sort By Price</button>
+          <button id="authorize_button_google" class="btn btn-primary tools-events" onclick="handleGoogleSignIn()">Sign In To Google</button>
+          <button id="signout_button_google" class="btn btn-primary tools-events" onclick="handleSignout()">Sign Out Of Google</button>
           <a type="button" class="btn btn-warning btn-create-event tools-events" href="/createEventForm.html">Create Event</a>
         </div>
       </div>
     </div>
   </div>
+  <pre id="content_google" style="white-space: pre-wrap;"></pre>
+
+
     <div class="card-container">
     </div>
 
+  
+    <script type="text/javascript">
+      /* exported gapiLoaded */
+      /* exported gisLoaded */
+      /* exported handleAuthClick */
+      /* exported handleSignoutClick */
+
+      // TODO(developer): Set to client ID and API key from the Developer Console
+      const CLIENT_ID = '1089595369803-8aebmjojlqmos49ifvg049io1e4rpeje.apps.googleusercontent.com';
+      const API_KEY = 'AIzaSyAJklJeZ0-lvOU2qvp8Ae-ycgf8vbyp660';
+
+      let tokenClient;
+      let gapiInited = false;
+      let gisInited = false;
+
+      // Discovery doc URL for APIs used by the quickstart
+      const DISCOVERY_DOC = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
+
+      // Authorization scopes required by the API; multiple scopes can be
+      // included, separated by spaces.
+      const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
+
+
+      //document.getElementById('authorize_button_google').style.visibility = 'hidden';
+      //document.getElementById('signout_button_google').style.visibility = 'hidden';
+
+      /**
+       * Callback after api.js is loaded.
+       */
+      function gapiLoaded() {
+        gapi.load('client', initializeGapiClient);
+      }
+
+      /**
+       * Callback after the API client is loaded. Loads the
+       * discovery doc to initialize the API.
+       */
+      async function initializeGapiClient() {
+        await gapi.client.init({
+          apiKey: API_KEY,
+          discoveryDocs: [DISCOVERY_DOC],
+        });
+        gapiInited = true;
+      }
+
+      /**
+       * Callback after Google Identity Services are loaded.
+       */
+      function gisLoaded() {
+        tokenClient = google.accounts.oauth2.initTokenClient({
+          client_id: CLIENT_ID,
+          scope: SCOPES,
+          callback: '', // defined later
+        });
+        gisInited = true;
+      }
+
+      /**
+       * Enables user interaction after all libraries are loaded.
+       */
+      function maybeEnableButtons() {
+        if (gapiInited && gisInited) {
+          document.getElementById('authorize_button_google').style.visibility = 'visible';
+        }
+      }
+
+      /**
+       *  Sign in the user upon button click.
+       */
+      function handleGoogleSignIn() {
+        tokenClient.callback = async (resp) => {
+          if (resp.error !== undefined) {
+            throw (resp);
+          }
+          document.getElementById('signout_button_google').style.visibility = 'visible';
+          document.getElementById('authorize_button_google').innerText = 'Refresh';
+        };
+
+        if (gapi.client.getToken() === null) {
+          // Prompt the user to select a Google Account and ask for consent to share their data
+          // when establishing a new session.
+          tokenClient.requestAccessToken({prompt: 'consent'});
+        } else {
+          // Skip display of account chooser and consent dialog for an existing session.
+          tokenClient.requestAccessToken({prompt: ''});
+        }
+      }
+
+      /**
+       *  Sign out the user upon button click.
+       */
+      function handleSignout() {
+        const token = gapi.client.getToken();
+        if (token !== null) {
+          google.accounts.oauth2.revoke(token.access_token);
+          gapi.client.setToken('');
+          document.getElementById('content_google').innerText = '';
+          document.getElementById('authorize_button_google').innerText = 'Authorize';
+          document.getElementById('signout_button_google').style.visibility = 'hidden';
+        }
+      }
+
+      if (gapiInited && gisInited) {
+        console.log("gapiInited", gapiInited)
+        console.log("gisInited", gisInited)
+
+      }
+
+      /**
+       * Print the summary and start datetime/date of the next ten events in
+       * the authorized user's calendar. If no events are found an
+       * appropriate message is printed.
+       */
+      
+    </script>
+    <script async defer src="https://apis.google.com/js/api.js" onload="gapiLoaded()"></script>
+    <script async defer src="https://accounts.google.com/gsi/client" onload="gisLoaded()"></script>
     <div class="footer-container">
                     <div class="footer-left">
                         <h1 class="footer-title">Contact Us</h1>
