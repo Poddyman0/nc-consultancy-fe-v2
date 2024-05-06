@@ -138,8 +138,36 @@ function loadEvents() {
                     /**
                      *  Sign in the user upon button click.
                      */
+                    async function createEventGoogleCallendar (aEvent) {
+                        console.log("in create event", aEvent)
+                        const event = {
+                            'summary': `${aEvent.eventName}`,
+                            'location': `${aEvent.eventBuildingNumber}, ${aEvent.eventStreetName}, ${aEvent.eventCity}, ${aEvent.eventCounty}, ${aEvent.eventCountry}, ${aEvent.eventPostCode}`,
+                            'description': 'A walk in the woods',
+                            'start': {
+                              'dateTime': `${aEvent.eventStartDate}`,
+                              'timeZone': 'Europe/London'
+                            },
+                            'end': {
+                              'dateTime': `${aEvent.eventEndDate}`,
+                              'timeZone': 'Europe/London'
+                            }
+                          };
+                          
+                          const request = gapi.client.calendar.events.insert({
+                            'calendarId': 'primary',
+                            'resource': event
+                          });
+                          
+                          request.execute(function(event) {
+                            console.log("in request execute", event)
+                            //appendPre('Event created: ' + event.htmlLink);
+                            eventLinkButton.setAttribute('href', event.htmlLink)
+                          });
+                    }
                     authorizeButton.addEventListener('click', function(event) {
                         console.log("eventToAddCallendar", event.target.value._id)
+                        console.log("a Event in add to GC", aEvent)
                         tokenClient.callback = async (resp) => {
                         if (resp.error !== undefined) {
                             throw (resp);
@@ -168,33 +196,7 @@ function loadEvents() {
                         * the authorized user's calendar. If no events are found an
                         * appropriate message is printed.
                         */
-                    async function createEventGoogleCallendar (aEvent) {
-                        console.log("in create event", aEvent)
-                        const event = {
-                            'summary': `${aEvent.eventName}`,
-                            'location': `${aEvent.eventBuildingNumber}, ${aEvent.eventStreetName}, ${aEvent.eventCity}, ${aEvent.eventCounty}, ${aEvent.eventCountry}, ${aEvent.eventPostCode}`,
-                            'description': 'A walk in the woods',
-                            'start': {
-                              'dateTime': `${aEvent.eventStartDate}`,
-                              'timeZone': 'Europe/London'
-                            },
-                            'end': {
-                              'dateTime': `${aEvent.eventEndDate}`,
-                              'timeZone': 'Europe/London'
-                            }
-                          };
-                          
-                          const request = gapi.client.calendar.events.insert({
-                            'calendarId': 'primary',
-                            'resource': event
-                          });
-                          
-                          request.execute(function(event) {
-                            console.log("in request execute", event)
-                            //appendPre('Event created: ' + event.htmlLink);
-                            eventLinkButton.setAttribute('href', event.htmlLink)
-                          });
-                    }
+
             })
         })
 }
