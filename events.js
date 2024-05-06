@@ -60,7 +60,7 @@ function loadEvents() {
                         <li class="card-text"><strong>Start Date: </strong>${aEvent.eventStartDate}</li>
                         <li class="card-text"><strong>Start Time: </strong>${aEvent.eventStartTime}</li>
                         <li class="card-text"><strong>End Date: </strong>${aEvent.eventEndDate}</li>
-                        <li class="card-text"><strong>End Time: </strong>>${aEvent.eventEndTime}</li>
+                        <li class="card-text"><strong>End Time: </strong>${aEvent.eventEndTime}</li>
                         <li class="card-text"><strong>Location: </strong>${aEvent.eventBuildingNumber}, ${aEvent.eventStreetName}, ${aEvent.eventCity}, ${aEvent.eventCounty}, ${aEvent.eventCountry}, ${aEvent.eventPostCode}</li>
                         <li class="card-text"><strong>Pricing: </strong>${aEvent.eventPricing}</li>
                         <li class="card-text"><strong>Price: </strong>£${aEvent.eventTicketPrice}</li>
@@ -155,11 +155,11 @@ function loadEvents() {
                                 'location': `${aEvent.eventBuildingNumber}, ${aEvent.eventStreetName}, ${aEvent.eventCity}, ${aEvent.eventCounty}, ${aEvent.eventCountry}, ${aEvent.eventPostCode}`,
                                 'description': 'A walk in the woods',
                                 'start': {
-                                  'dateTime': `${aEvent.eventStartDate}`,
+                                  'dateTime': `${aEvent.eventStartDate}T${aEvent.eventStartTime}:00.000Z`,
                                   'timeZone': 'Europe/London'
                                 },
                                 'end': {
-                                  'dateTime': `${aEvent.eventEndDate}`,
+                                  'dateTime': `${aEvent.eventEndDate}T${aEvent.eventEndTime}:00.000Z`,
                                   'timeZone': 'Europe/London'
                                 }
                               };
