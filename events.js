@@ -74,8 +74,8 @@ function loadEvents() {
                         <button class="btn btn-warning card-btn" value="${aEvent}" id="add-to-cart-button-${aEvent._id}">Add To Event To Callendar And Cart</button>
                         <button class="btn btn-danger card-btn" id="delete-event">Delete Event</button>
                        
-                        <button class="btn btn-primary" style="width: 100%" id="authorize_button-${aEvent._id}" onclick="handleAuthClick(${aEvent})">Add Event To Google Callendar</button>
-                        <button class="btn btn-primary" style="width: 100%" id="signout_button-${aEvent._id}" onclick="handleSignoutClick()">Sign Out of Google Callendar</button>
+                        <button class="btn btn-primary" style="width: 100%" value="${aEvent}" id="authorize_button-${aEvent._id}" >Add Event To Google Callendar</button>
+                        <button class="btn btn-primary" style="width: 100%" value="${aEvent}" id="signout_button-${aEvent._id}">Sign Out of Google Callendar</button>
                         <a class="btn btn-primary" style="width: 100%" id="content-${aEvent._id}">Link To Event Created On Google Callendar</a>
                         
                         <ul>
@@ -83,7 +83,10 @@ function loadEvents() {
                         </ul>
                         </div>
                     `
-                    eventDisplay.appendChild(aEventToDisplay)                    
+                    eventDisplay.appendChild(aEventToDisplay) 
+                    //onclick="handleAuthClick(${aEvent})"
+                    // onclick="handleSignoutClick()"
+                                       
                     
                     //<button class="btn btn-warning" value="${aEvent._id}" id="btn-sign-up-to-event">Sign Up To Event</button> 
                     // delete event in event.js
@@ -117,11 +120,11 @@ function loadEvents() {
                             console.log("eventCallendar", eventCallendar)
                         }
                     })
-                    const authorizeButton = document.getElementById(`authorize_button-${aEvent._id}`)
+                    const authorizeButton = document.querySelector(`#authorize_button-${aEvent._id}`)
                     authorizeButton.style.visibility = 'visible';
-                    const signOutButton = document.getElementById(`signout_button-${aEvent._id}`)
+                    const signOutButton = document.querySelector(`#signout_button-${aEvent._id}`)
                     signOutButton.style.visibility = 'hidden';
-                    const eventLinkButton = document.getElementById(`content-${aEvent._id}`)
+                    const eventLinkButton = document.querySelector(`#content-${aEvent._id}`)
                     eventLinkButton.style.visibility = 'hidden';
                     
                     /**
@@ -137,8 +140,8 @@ function loadEvents() {
                     /**
                      *  Sign in the user upon button click.
                      */
-                    function handleAuthClick(eventToAddToCallendar) {
-                        console.log("eventToAddCallendar", eventToAddToCallendar)
+                    authorizeButton.addEventListener('click', function(event) {
+                        console.log("eventToAddCallendar", event.target.value)
                         tokenClient.callback = async (resp) => {
                         if (resp.error !== undefined) {
                             throw (resp);
@@ -156,7 +159,8 @@ function loadEvents() {
                         // Skip display of account chooser and consent dialog for an existing session.
                         tokenClient.requestAccessToken({prompt: ''});
                         }
-                    }
+                    })
+                    //function handleAuthClick(eventToAddToCallendar) {}
 
                     /**
                      *  Sign out the user upon button click.
