@@ -129,6 +129,7 @@ function loadEvents() {
                      */
                     //function maybeEnableButtons() {
                         if (gapiInited && gisInited) {
+                            console.log("in api and gis", gapiInited,  gisInited)
                             authorizeButton.style.visibility = 'visible';
                         }
                    // }
@@ -137,6 +138,7 @@ function loadEvents() {
                      *  Sign in the user upon button click.
                      */
                     function handleAuthClick(eventToAddToCallendar) {
+                        console.log("eventToAddCallendar", eventToAddToCallendar)
                         tokenClient.callback = async (resp) => {
                         if (resp.error !== undefined) {
                             throw (resp);
@@ -160,6 +162,7 @@ function loadEvents() {
                      *  Sign out the user upon button click.
                      */
                     function handleSignoutClick() {
+                        console.log("in handle sign out")
                         const token = gapi.client.getToken();
                         if (token !== null) {
                         google.accounts.oauth2.revoke(token.access_token);
@@ -175,7 +178,7 @@ function loadEvents() {
                         * appropriate message is printed.
                         */
                     async function createEventGoogleCallendar (eventToAddToCallendar) {
-
+                        console.log("in create event", eventToAddToCallendar)
                         const event = {
                             'summary': `${eventToAddToCallendar.eventName}`,
                             'location': `${eventToAddToCallendar.eventBuildingNumber}, ${eventToAddToCallendar.eventStreetName}, ${eventToAddToCallendar.eventCity}, ${eventToAddToCallendar.eventCounty}, ${eventToAddToCallendar.eventCountry}, ${eventToAddToCallendar.eventPostCode}`,
@@ -196,6 +199,7 @@ function loadEvents() {
                           });
                           
                           request.execute(function(event) {
+                            console.log("in request execute", event)
                             //appendPre('Event created: ' + event.htmlLink);
                             eventLinkButton.setAttribute('href', event.htmlLink)
                           });
