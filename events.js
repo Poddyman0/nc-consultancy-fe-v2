@@ -73,10 +73,9 @@ function loadEvents() {
                         </form>
                         <button class="btn btn-warning card-btn" value="${aEvent}" id="add-to-cart-button-${aEvent._id}">Add To Event To Callendar And Cart</button>
                         <button class="btn btn-danger card-btn" id="delete-event">Delete Event</button>
-                       
                         <button class="btn btn-primary" style="width: 100%" value="${aEvent}" id="authorize_button-${aEvent._id}" >Add Event To Google Callendar</button>
+                        <p style="font-size: 10px;">Sign into google above before adding to callendar</p>
                         <a class="btn btn-primary" style="width: 100%" id="content-${aEvent._id}">Link To Event Created On Google Callendar</a>
-                        
                         <ul>
                         <li id="added-to-cart-feedback"></li>
                         </ul>
