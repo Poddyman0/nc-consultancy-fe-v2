@@ -2,14 +2,11 @@
 front end:
 
 ront end:
-- profile get info
-
-- go through each page and make it work on the front end (updateEvent, profile, profileupdate, signinform, signup form,)
-- if anyone signed up, asnyone can add an event they've signed up for to for their callendar.
-
 - tests (jest) - front end only
 - read me documentation
 
+
+- if anyone signed up, asnyone can add an event they've signed up for to for their callendar.
 
 - BE: fix cors issue.
 needs to be hosted on same domain (if move to BE, change google to use same domane)

@@ -1,21 +1,46 @@
-import { eventIDToView } from './events.js'
-import {profileIDSignedIn, profileSignedIn } from 'signInForm.js'
-import {updateEventButtonExport, signUpToEventButtonExport} from 'event.js'
+//import { eventIDToView } from './events.js'
+//import {profileIDSignedIn, profileSignedIn } from 'signInForm.js'
+//import {updateEventButtonExport, signUpToEventButtonExport} from 'event.js'
 
 document.addEventListener('DOMContentLoaded', function() {
-    createEventForm(atendeeID, atendeeArray)
+    createEventForm()
 })
 
 let atendeeID = 0
 
 let atendeeArray = []
 
+let profileIDSignedIn = "662b78f7227520c132110592"
+let eventIDToView = "662b78f7227520c1321105a2"
 
-function createEventForm(atendeeID, atendeeArray) {
+let profileSignedIn = {
+    _id: "662b78f7227520c132110592",
+    profilePassword: "Asdf5678%",
+    profileTelephone: 447012345678,
+    profileEmail: "adam.apple@outlook.com",
+    profileFirstName: "Adam",
+    profileSecondName: "Apple",
+    profileDOB: {"$date": {"$numberLong": "493257600000"}},
+    profileRole: "internal",
+    profileCardHolderName: "Mr Addam Apple",
+    profileBankName: "HSBC",
+    profileCardNumber: {"$numberDouble": "36925801473692.0"},
+    profileExpireyDate: "01/29",
+    profileCVV: 456,
+    profilePostCode: "WD259JH",
+    profileHouseNumber: "2",
+    profileStreet: "Amber Avenue",
+    profileCity: "Leeds",
+    profileCounty: "West Yorkshire",
+    profileCountry: "England",
+    profileSignedIn: false
+}
+
+function createEventForm() {
     const eventUpdateLoading = document.querySelector('#event-update-loading')
     eventUpdateLoading.style.display = "none"
     eventUpdateLoading.innerHTML = ""
- if (profileSignedIn.role === "internal") {
+ if (profileSignedIn.profileRole === "internal") {
     const updateEventForm = document.querySelector('#middle-container-update-event')
     updateEventForm.innerHTML = `
     <div class="form-group">
@@ -189,14 +214,14 @@ function createEventForm(atendeeID, atendeeArray) {
     const pricingFree = document.querySelector('#pricing-free-update')
     const pricingPaid = document.querySelector('#pricing-paid-update')
     const pricingPAYF = document.querySelector('#pricing-pay-as-you-feel-update')
-    const pricingFeedback = document.querySelector('#create-event-pricing-feedback-update')
+    const pricingFeedback = document.querySelector('.create-event-pricing-feedback-update')
     let pricing = "";
 
     if (!pricingFree.checked && !pricingPaid.checked && !pricingPAYF.checked) {
-        pricingFeedback.innerHtml = "Pricing must be either free, paid or pay as you feel."
+        pricingFeedback.innerHTML = "Pricing must be either free, paid or pay as you feel."
         
     } else if (pricingFree.checked && pricingPaid.checked && pricingPAYF.checked) {
-        pricingFeedback.innerHtml = "Pricing must be either free, paid or pay as you feel."
+        pricingFeedback.innerHTML = "Pricing must be either free, paid or pay as you feel."
 
     } else if (pricingFree.checked) {
         pricing = "free"
@@ -222,14 +247,16 @@ function createEventForm(atendeeID, atendeeArray) {
             return response.json();
         })
         .then(function(response) {
+            const dateStartFormat = response.eventStartDate.split('T')[0]
+            const dateEndFormat = response.eventEndDate.split('T')[0]
             eventUpdateLoading.style.display = "none"
             eventUpdateLoading.innerHTML = ""
             eventOrganiser.value = response.eventOrganiser,
             eventName.value = response.eventName,
             eventDescription.value = response.eventDescription,
-            eventStartDate.value = response.eventStartDate,
+            eventStartDate.value = dateStartFormat,
             eventStartTime.value = response.eventStartTime,
-            eventEndDate.value = response.eventEndDate,
+            eventEndDate.value = dateEndFormat,
             eventEndTime.value = response.eventEndTime,
             eventTicketAmount.value = response.eventTicketAmount,
             eventTicketPrice.value = response.eventTicketPrice,
@@ -241,6 +268,7 @@ function createEventForm(atendeeID, atendeeArray) {
             country.value = response.eventCountry,
             eventImage.src = response.eventPicture,
             atendeeArray = response.eventAtendees,
+            console.log(atendeeArray)
             atendeeID += response.eventAtendees.length,
             isFreeOrPaidOrPAYF ()
             function isFreeOrPaidOrPAYF () {
@@ -325,8 +353,8 @@ function createEventForm(atendeeID, atendeeArray) {
 
 
     })
-
-    updateEventButtonExport.addEventListener('click', function(event) {
+    const updatEventButtonExtra = document.querySelector('.btn-update-event')
+    updatEventButtonExtra.addEventListener('click', function(event) {
         
 
         event.preventDefault()
@@ -370,21 +398,21 @@ function createEventForm(atendeeID, atendeeArray) {
         const pricingFree = document.querySelector('#pricing-free-update')
         const pricingPaid = document.querySelector('#pricing-paid-update')
         const pricingPAYF = document.querySelector('#pricing-pay-as-you-feel-update')
-        const pricingFeedback = document.querySelector('#create-event-pricing-feedback-update')
+        const pricingFeedback = document.querySelector('.create-event-pricing-feedback-update')
         let pricing = "";
     
         if (!pricingFree.checked && !pricingPaid.checked && !pricingPAYF.checked) {
-            pricingFeedback.innerHtml = "Pricing must be either free, paid or pay as you feel."
+            pricingFeedback.innerHTML = "Pricing must be either free, paid or pay as you feel."
             
         } else if (pricingFree.checked && pricingPaid.checked && pricingPAYF.checked) {
-            pricingFeedback.innerHtml = "Pricing must be either free, paid or pay as you feel."
+            pricingFeedback.innerHTML = "Pricing must be either free, paid or pay as you feel."
     
         } else if (pricingFree.checked) {
             pricing = "free"
-            pricingFeedback.innerHtml = ""
+            pricingFeedback.innerHTML = ""
         } else if (pricingPaid.checked) {
             pricing = "paid"
-            pricingFeedback.innerHtml = ""
+            pricingFeedback.innerHTML = ""
         } else if (pricingPAYF.checked) {
             pricing = "pay as you feel"
             pricingFeedback.innerHTML = ""
@@ -402,7 +430,7 @@ function createEventForm(atendeeID, atendeeArray) {
         }
 
         
-
+        /*
         for (let i = 1; i <= atendeeID; i++) {
             const currentAtendeeFirstName = document.querySelector(`#update-event-atendee-first-name-${i}`)
             const currentAtendeeFirstNameFeedback = document.querySelector(`.update-event-first-name-${i}-feedback`)
@@ -411,9 +439,9 @@ function createEventForm(atendeeID, atendeeArray) {
             const currentAtendeeEmail = document.querySelector(`#update-event-atendee-e-mail-${i}`)
             const currentAtendeeEmailFeedback = document.querySelector(`.update-event-atendee-email-${i}-feedback`)
             
-            const nameRegex = /^[A-Za-z\s\-']+$/;
-            const hasFirstName = nameRegex.test(currentAtendeeFirstName.value);
-            const hasSecondName = nameRegex.test(currentAtendeeSecondName.value);
+            //const nameRegex = /^[A-Za-z\s\-']+$/;
+            //const hasFirstName = nameRegex.test(currentAtendeeFirstName.value);
+            //const hasSecondName = nameRegex.test(currentAtendeeSecondName.value);
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             const hasEmail = emailRegex.test(currentAtendeeEmail.value)
 
@@ -453,6 +481,7 @@ function createEventForm(atendeeID, atendeeArray) {
             console.log(atendeeArray)
 
         }
+        */
 
         let hasEventOrganiser
 
@@ -742,6 +771,7 @@ function createEventForm(atendeeID, atendeeArray) {
                     body: JSON.stringify(updateEventBE)
                 })
                 .then(function(response) {
+                    console.log("hi")
                     eventUpdateLoading.style.display = "none"
                     eventUpdateLoading.innerHTML = ""
 

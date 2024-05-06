@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateProfile()
 })
 
-
+let profileIDSignedIn = "662b78f7227520c132110592"
 
 function updateProfile() {
     const password = document.querySelector('#password-update-profile')
@@ -55,20 +55,16 @@ function updateProfile() {
         const loadingProfileUpdate = document.querySelector('#loading-profile-update')
         loadingProfileUpdate.style.display = "block"
         loadingProfileUpdate.innerHTML = "Loading your profile..."
-        /*
-        const getProfileBE = {
-            profileEmailSignedIn: profileEmailSignedIn,
-            profileID: profileIDSignedIn,            
-        }
-        */
+
         fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/profile/get/${profileIDSignedIn}/profileupdate`, {
             method: 'GET',
-            body: JSON.stringify(getProfileBE)
         })
         .then(function(response) {
             return response.json();
         })
         .then(function(response) {
+            const dateStartFormat = response.profileDOB.split('T')[0]
+
             loadingProfileUpdate.style.display = "none"
             loadingProfileUpdate.innerHTML = ""
             password.value = response.profilePassword,
@@ -76,7 +72,7 @@ function updateProfile() {
             email.value = response.profileEmail,
             firstName.value = response.profileFirstName,
             secondName.value = response.profileSecondName,
-            DOB.value = response.profileDOB,
+            DOB.value = dateStartFormat,
             cardHolderName.value = response.profileCardHolderName,
             bankName.value = response.profileBankName,
             cardNumber.value = response.profileCardNumber,
@@ -381,9 +377,10 @@ function updateProfile() {
 
             }
             if (hasUkPhoneNumber && hasEmail && hasFirstName && hasSecondName && hasDOB && isLengthValid && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && password.value === passwordConfirmation.value && hasCardHolderName && hasBankName && hasCardNumber && hasExpiryDate && hasCVV && hasHouseNumber && hasStreet && hasCity && hasCountry && hasCounty && hasPostCode) {
+                const loadingProfileUpdate = document.querySelector('#loading-profile-update')
                 loadingProfileUpdate.style.display = "block"
                 loadingProfileUpdate.innerHTML = "Loading your profile update..."
-                /*
+                
                 updateProfile ()
                 function updateProfile () {
                     const createProfileBE = {
@@ -413,12 +410,10 @@ function updateProfile() {
 
                     fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/profile/put/${profileIDSignedIn}/profileupdate`, {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
                         body: JSON.stringify(createProfileBE),
                         })
                         .then(response => {
+                            console.log(response)
                             loadingProfileUpdate.style.display = "none"
                             loadingProfileUpdate.innerHTML = ""
                         if (!response.ok) {
@@ -433,7 +428,7 @@ function updateProfile() {
                         console.error('Error:', error);
                         });
                 }
-                */
+            
                 
                 signedUpFeedback.style.display = "block"
                 signedUpFeedback.innerHTML = "You have successfilly signed up. Return to login page to sign in."

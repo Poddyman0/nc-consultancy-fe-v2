@@ -3,8 +3,29 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 
 
-export let profileIDSignedIn = "";
-export let profileSignedIn = {};
+let profileIDSignedIn = "662b78f7227520c132110598";
+let profileSignedIn = {
+  _id: "662b78f7227520c132110592",
+  profilePassword: "Asdf5678%",
+  profileTelephone: 447012345678,
+  profileEmail: "adam.apple@outlook.com",
+  profileFirstName: "Adam",
+  profileSecondName: "Apple",
+  profileDOB: "493257600000",
+  profileRole: "internal",
+  profileCardHolderName: "Mr Addam Apple",
+  profileBankName: "HSBC",
+  profileCardNumber: "369258014736920",
+  profileExpireyDate: "01/29",
+  profileCVV: 456,
+  profilePostCode: "WD259JH",
+  profileHouseNumber: "2",
+  profileStreet: "Amber Avenue",
+  profileCity: "Leeds",
+  profileCounty: "West Yorkshire",
+  profileCountry: "England",
+  profileSignedIn: false,
+};
 
 function signInForm() {
 
@@ -14,15 +35,15 @@ function signInForm() {
         
         document.querySelector('.btn-sign-in').addEventListener('click', function(event) {
             event.preventDefault()
-            const emailSignIn = document.querySelector('#email-sign-in').value
+            const emailSignIn = document.querySelector('#email-sign-in')
             const emailSignInFeedback = document.querySelector('.sign-in-email-feedback')
-            const passwordSignIn = document.querySelector('#password-sign-in').value
+            const passwordSignIn = document.querySelector('#password-sign-in')
             const passwordSignInFeedback = document.querySelector('.sign-in-password-feedback')
             const loadingProfileSignIn = document.querySelector('#loading-profile-sign-in')
             loadingProfileSignIn.style.display = "block"
             loadingProfileSignIn.innerHTML = "Loading profile sign in..."            
 
-        fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/profile/get/${emailSignIn}/${passwordSignIn}/signin`, {
+        fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/profile/get/${emailSignIn.value}/${passwordSignIn.value}/signin`, {
             method: 'GET',
             
         })
@@ -48,14 +69,12 @@ function signInForm() {
                     emailSignInFeedback.innerHTML = ""
                     passwordSignInFeedback.innerHTML = ""
                     profileIDSignedIn = response
-                    profileSignedIn = error[0];
+                    //profileSignedIn = error[0];
                 }
 
         })
-        .catch(function(err) {
-            console.log("Error: ", err)
-        })
-        /*
+
+        
         if (profileIDSignedIn !== "") {
             const createProfileBE = {
                 profilePassword: `${profileSignedIn.profilePassword}`,
@@ -96,11 +115,8 @@ function signInForm() {
             .then(data => {
               console.log('Success:', data);
             })
-            .catch(error => {
-              console.error('Error:', error);
-            });
+
         }
-*/
     })
     }
 

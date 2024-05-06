@@ -75,16 +75,37 @@ function loadEvents() {
                                     <input type="number" class="form-control" id="add-to-cart-amount-${aEvent._id}" placeholder="Enter amount of tickets you would like to buy." required>
                                     <div class="invalid-feedback" id="add-to-cart-amount-feedback-${aEvent._id}"></div>
                         </form>
+                        <div>
                         <button class="btn btn-warning card-btn" value="${aEvent}" id="add-to-cart-button-${aEvent._id}">Add Event To Callendar And Cart</button>
-                        <button class="btn btn-danger card-btn" id="delete-event">Delete Event</button>
                         <button class="btn btn-primary" style="width: 100%" value="${aEvent}" id="authorize_button-${aEvent._id}" >Add Event To Google Callendar</button>
                         <p style="font-size: 10px;">Sign into google above before adding to callendar</p>
                         <a class="btn btn-primary" style="width: 100%" id="content-${aEvent._id}">Link To Event Created On Google Callendar</a>
+                        </div>
                         <ul>
                         <li id="added-to-cart-feedback"></li>
                         </ul>
                         </div>
                     `
+                    if (aEvent.eventOrganiser === '662b78f7227520c132110592'){
+                        console.log("event id", aEvent._id)
+                        const updateEvent = document.createElement('button')
+                        updateEvent.className = "btn btn-warning card-btn"
+                        updateEvent.innerHTML = "Update Event"
+                        aEventToDisplay.appendChild(updateEvent)
+                        const deleteEventBTN = document.createElement('button')
+                        deleteEventBTN.className = "btn btn-danger card-btn"
+                        deleteEventBTN.innerHTML = "Delete Event"
+                        aEventToDisplay.appendChild(deleteEventBTN)
+                        updateEvent.addEventListener('click', function () {
+                            window.location.href = "/eventUpdate.html"
+                        })
+
+
+                    }
+                    
+                        
+                        
+                    
                     eventDisplay.appendChild(aEventToDisplay) 
                     //onclick="handleAuthClick(${aEvent})"
                     // onclick="handleSignoutClick()"
@@ -98,7 +119,6 @@ function loadEvents() {
                         //let eventObj = event.target.value;
                         //let eventObj = event.target.value;
 
-                        console.log("aEvent", aEvent)
                         //console.log("eventOBJ", eventObj)
 
                         // button to view event: document.getElementById(`btn-event-card-${event._id}`).addEventListener('click', handleEventButtonClick);  
@@ -110,8 +130,6 @@ function loadEvents() {
                         //const signUpToEventButton = document.querySelector('#btn-sign-up-to-event')
                         //signUpToEventButtonExport = signUpToEventButton
                         addedToCartFeedback.innerHTML = ""
-                        console.log("eventOBJ", aEvent._id)
-                        console.log()
                         if (ticketAmountPurchase.value.length === 0 || ticketAmountPurchase.value > aEvent.eventTicketAmount) {
                             ticketAmountPurchase.className = "form-control is-invalid"
                             addToCartAmountFeedback.innerHTML = "Amount of tickets purchased field must not be empty or be greater than the amount of tickets available"
@@ -120,21 +138,18 @@ function loadEvents() {
                             addToCartAmountFeedback.innerHTML = ""
                             addedToCartFeedback.innerHTML = "Event successfully added to cart"
                             eventCallendar.push(aEvent)
-                            console.log("eventCallendar", eventCallendar)
                         }
                     })
                     const authorizeButton = document.querySelector(`#authorize_button-${aEvent._id}`)
                     const eventLinkButton = document.querySelector(`#content-${aEvent._id}`)
                     eventLinkButton.style.visibility = 'hidden';
-                    console.log("authorise button", authorizeButton)
-                    console.log("event google callendar confirmation", eventLinkButton)
+
 
                     /**
                      * Enables user interaction after all libraries are loaded.
                      */
                     //function maybeEnableButtons() {
                         if (gapiInited && gisInited) {
-                            console.log("in api and gis")
                         }
                    // }
 
@@ -143,7 +158,6 @@ function loadEvents() {
                      */
                     
                     authorizeButton.addEventListener('click', function() {
-                        console.log("a Event in add to GC", aEvent)
                         tokenClient.callback = async (resp) => {
                         if (resp.error !== undefined) {
                             throw (resp);
@@ -151,7 +165,6 @@ function loadEvents() {
                         eventLinkButton.style.visibility = 'visible';
                         await createEventGoogleCallendar(aEvent)
                         async function createEventGoogleCallendar (aEvent) {
-                            console.log("in create event", aEvent)
                             const dateStartFormat = aEvent.eventStartDate.split('T')[0]
                             const dateEndFormat = aEvent.eventEndDate.split('T')[0]
                             const ISODateTimeStart = `${dateStartFormat}T${aEvent.eventStartTime}:00.000Z`
@@ -176,7 +189,6 @@ function loadEvents() {
                               });
                               
                               request.execute(function(event) {
-                                console.log("in request execute", event)
                                 //appendPre('Event created: ' + event.htmlLink);
                                 eventLinkButton.setAttribute('href', event.htmlLink)
                               });
