@@ -138,18 +138,18 @@ function loadEvents() {
                     /**
                      *  Sign in the user upon button click.
                      */
-                    async function createEventGoogleCallendar (aEvent) {
-                        console.log("in create event", aEvent)
+                    async function createEventGoogleCallendar (eventToAddToGC) {
+                        console.log("in create event", eventToAddToGC)
                         const event = {
-                            'summary': `${aEvent.eventName}`,
-                            'location': `${aEvent.eventBuildingNumber}, ${aEvent.eventStreetName}, ${aEvent.eventCity}, ${aEvent.eventCounty}, ${aEvent.eventCountry}, ${aEvent.eventPostCode}`,
+                            'summary': `${eventToAddToGC.eventName}`,
+                            'location': `${eventToAddToGC.eventBuildingNumber}, ${eventToAddToGC.eventStreetName}, ${eventToAddToGC.eventCity}, ${eventToAddToGC.eventCounty}, ${eventToAddToGC.eventCountry}, ${eventToAddToGC.eventPostCode}`,
                             'description': 'A walk in the woods',
                             'start': {
-                              'dateTime': `${aEvent.eventStartDate}`,
+                              'dateTime': `${eventToAddToGC.eventStartDate}`,
                               'timeZone': 'Europe/London'
                             },
                             'end': {
-                              'dateTime': `${aEvent.eventEndDate}`,
+                              'dateTime': `${eventToAddToGC.eventEndDate}`,
                               'timeZone': 'Europe/London'
                             }
                           };
