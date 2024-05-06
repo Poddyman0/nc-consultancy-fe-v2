@@ -35,7 +35,9 @@ let eventCallendar = []
 
 function loadEvents() {
     const eventDisplay = document.querySelector('.card-container')
-
+    const eventsLoading = document.querySelector('#events-loading')
+    eventsLoading.style.display = "block"
+    eventsLoading.innerHTML = "Loading Events..."
             fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/events/get`, {
                 method: 'GET',
             })
@@ -43,6 +45,8 @@ function loadEvents() {
                 return response.json();
             })
             .then(function(response) {
+                eventsLoading.style.display = "none"
+                eventsLoading.innerHTML = ""
                 response.forEach(aEvent => {
 
                     eventsArray.push(aEvent)
@@ -71,7 +75,7 @@ function loadEvents() {
                                     <input type="number" class="form-control" id="add-to-cart-amount-${aEvent._id}" placeholder="Enter amount of tickets you would like to buy." required>
                                     <div class="invalid-feedback" id="add-to-cart-amount-feedback-${aEvent._id}"></div>
                         </form>
-                        <button class="btn btn-warning card-btn" value="${aEvent}" id="add-to-cart-button-${aEvent._id}">Add To Event To Callendar And Cart</button>
+                        <button class="btn btn-warning card-btn" value="${aEvent}" id="add-to-cart-button-${aEvent._id}">Add Event To Callendar And Cart</button>
                         <button class="btn btn-danger card-btn" id="delete-event">Delete Event</button>
                         <button class="btn btn-primary" style="width: 100%" value="${aEvent}" id="authorize_button-${aEvent._id}" >Add Event To Google Callendar</button>
                         <p style="font-size: 10px;">Sign into google above before adding to callendar</p>

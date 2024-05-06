@@ -2,21 +2,18 @@
 front end:
 
 ront end:
+- profile get info
 
-- go through each page and make it work on the back end
-- export from one js file to another. events to profile
-- change fetch requests to use correct params or body in back end.
-- tests (jest) - front end only
-- show if content is still loading.
-- mobile responsive
-- accessible
+- go through each page and make it work on the front end (updateEvent, profile, profileupdate, signinform, signup form,)
 - if anyone signed up, asnyone can add an event they've signed up for to for their callendar.
-- hosted for free (front end)
-- read me documentation (what coded and how)
+
+- tests (jest) - front end only
+- read me documentation
 
 
 - BE: fix cors issue.
 needs to be hosted on same domain (if move to BE, change google to use same domane)
+- change fetch requests to use correct params or body in back end.
 
 on BE:
 do fetch server side. 

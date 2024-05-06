@@ -11,23 +11,29 @@ function signInForm() {
 
     profileSignIn ()
     function profileSignIn () {
+        
         document.querySelector('.btn-sign-in').addEventListener('click', function(event) {
             event.preventDefault()
             const emailSignIn = document.querySelector('#email-sign-in').value
             const emailSignInFeedback = document.querySelector('.sign-in-email-feedback')
             const passwordSignIn = document.querySelector('#password-sign-in').value
             const passwordSignInFeedback = document.querySelector('.sign-in-password-feedback')
-
+            const loadingProfileSignIn = document.querySelector('#loading-profile-sign-in')
+            loadingProfileSignIn.style.display = "block"
+            loadingProfileSignIn.innerHTML = "Loading profile sign in..."            
 
         fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/profile/get/${emailSignIn}/${passwordSignIn}/signin`, {
             method: 'GET',
             
         })
         .then(function(response) {
+
             console.log("json", response)
             return response.text();
         })
         .then(function(response) {
+          loadingProfileSignIn.style.display = "none"
+          loadingProfileSignIn.innerHTML = "" 
             console.log("after json", response)
 
             

@@ -1,12 +1,12 @@
-import {profileIDSignedIn } from 'signInForm.js'
+//import {profileIDSignedIn } from 'signInForm.js'
 
 document.addEventListener('DOMContentLoaded', function() {
-    updateProfile(profileIDSignedIn, profileEmailSignedIn)
+    updateProfile()
 })
 
 
 
-function updateProfile(profileIDSignedIn, profileEmailSignedIn) {
+function updateProfile() {
     const password = document.querySelector('#password-update-profile')
         const passwordConfirmation = document.querySelector('#password-confirm-update-profile')
         const passwordFeedback = document.querySelector('.update-profile-form-password-feedback')
@@ -52,12 +52,15 @@ function updateProfile(profileIDSignedIn, profileEmailSignedIn) {
 
     autoFillProfileForm ()
     function autoFillProfileForm () {
-        
+        const loadingProfileUpdate = document.querySelector('#loading-profile-update')
+        loadingProfileUpdate.style.display = "block"
+        loadingProfileUpdate.innerHTML = "Loading your profile..."
+        /*
         const getProfileBE = {
             profileEmailSignedIn: profileEmailSignedIn,
             profileID: profileIDSignedIn,            
         }
-
+        */
         fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/profile/get/${profileIDSignedIn}/profileupdate`, {
             method: 'GET',
             body: JSON.stringify(getProfileBE)
@@ -66,6 +69,8 @@ function updateProfile(profileIDSignedIn, profileEmailSignedIn) {
             return response.json();
         })
         .then(function(response) {
+            loadingProfileUpdate.style.display = "none"
+            loadingProfileUpdate.innerHTML = ""
             password.value = response.profilePassword,
             telephone.value = response.profileTelephone,
             email.value = response.profileEmail,
@@ -376,6 +381,9 @@ function updateProfile(profileIDSignedIn, profileEmailSignedIn) {
 
             }
             if (hasUkPhoneNumber && hasEmail && hasFirstName && hasSecondName && hasDOB && isLengthValid && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && password.value === passwordConfirmation.value && hasCardHolderName && hasBankName && hasCardNumber && hasExpiryDate && hasCVV && hasHouseNumber && hasStreet && hasCity && hasCountry && hasCounty && hasPostCode) {
+                loadingProfileUpdate.style.display = "block"
+                loadingProfileUpdate.innerHTML = "Loading your profile update..."
+                /*
                 updateProfile ()
                 function updateProfile () {
                     const createProfileBE = {
@@ -411,6 +419,8 @@ function updateProfile(profileIDSignedIn, profileEmailSignedIn) {
                         body: JSON.stringify(createProfileBE),
                         })
                         .then(response => {
+                            loadingProfileUpdate.style.display = "none"
+                            loadingProfileUpdate.innerHTML = ""
                         if (!response.ok) {
                             throw new Error('Network response was not ok');
                         }
@@ -423,6 +433,7 @@ function updateProfile(profileIDSignedIn, profileEmailSignedIn) {
                         console.error('Error:', error);
                         });
                 }
+                */
                 
                 signedUpFeedback.style.display = "block"
                 signedUpFeedback.innerHTML = "You have successfilly signed up. Return to login page to sign in."

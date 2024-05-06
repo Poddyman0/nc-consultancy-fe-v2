@@ -424,6 +424,8 @@ function createEventForm(atendeeID, atendeeArray) {
             //add back end here.
             
             createEvent ()
+            createdEventFeedback.style.display = "block"
+            createdEventFeedback.innerHTML = "Sending data to server..."
             function createEvent () {
                 const createEventBE = {
                     eventOrganiser: profileIDSignedIn,

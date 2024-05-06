@@ -6,7 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 
 function loadProfile () {
+
     const eventsInvitedToContainer = document.querySelector('.events-invited-to')
+    const loadingEventsInvitedTo = document.querySelector('#loading-profile-invites')
+    loadingEventsInvitedTo.style.display = "block"
+    loadingEventsInvitedTo.innerHTML = "Loading events you're invited to..."
     updateEventsInvitedTo()
     function updateEventsInvitedTo() {
         getEvents ()
@@ -19,6 +23,8 @@ function loadProfile () {
                     return response.json();
                 })
                 .then(function(response) {
+                    loadingEventsInvitedTo.style.display = "none"
+                    loadingEventsInvitedTo.innerHTML = ""
                         /*
                         let eventsResponse = {
                             event_id: event.eventID,
@@ -48,7 +54,6 @@ function loadProfile () {
                                 if (atendeeID ==="662b78f7227520c132110598") {
                                     //change above to profileIDSignedIn
                                     eventsInvitedToArray.push(event)
-                                    console.log(event)
                                     let aEventToDisplay = document.createElement('div')
                                     aEventToDisplay.className = "card"
                                     aEventToDisplay.id = `an-event-card-${event._id}`
@@ -89,6 +94,46 @@ function loadProfile () {
                     });
         }
     }
+    const profileDisplay = document.querySelector('#profile-info-container')
+    const loadingProfileInfo = document.querySelector('#loading-profile-info')
+
+        loadingProfileInfo.style.display = "block"
+        loadingProfileInfo.innerHTML = "Loading your profile information..."
+    
+    
+getProfile ()
+function getProfile () {
+    let exampleUserID = '662b78f7227520c132110598'
+    fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/profile/get/${exampleUserID}/profile`, {
+        method: 'GET',
+    })
+    .then(function(response) {
+        console.log(response)
+            loadingProfileInfo.style.display = "none"
+            loadingProfileInfo.innerHTML = ""
+            profileDisplay.innerHTML = `
+            <div id="${response._Id}">
+                <h1>Your Profile:</h1>
+                <div><strong>First Name: </strong>${response.firstName}</div>
+                <div><strong>Second Name: </strong>${response.secondName}</div>
+                <div><strong>Date Of Birth: </strong>${response.dateOfBirth}</div>
+                <div><strong>Phone Number: </strong>${response.phoneNumber}</div>
+                <div><strong>House Number: </strong>${response.houseNumber}</div>
+                <div><strong>Street Name: </strong>${response.streetName}</div>
+                <div><strong>City: </strong>${response.city}</div>
+                <div><strong>County: </strong>${response.county}</div>
+                <div><strong>Country: </strong>${response.country}</div>
+                <div><strong>Post Code: </strong>${response.postCode}</div>
+                <div><strong>Email: </strong>${response.email}</div>
+                <div><strong>Role: </strong>${response.role}</div>
+            </div>
+            `
+        })
+        .catch(function(err) {
+            console.log("Error: ", err)
+        })
+}
+
 }
 /*
 
@@ -134,6 +179,9 @@ function loadProfile () {
 
     document.querySelector('#cart-checkout').addEventListener('click', function() {
         updateEvent()
+        const loadingProfileCart = document.querySelector('#loading-profile-cart')
+        loadingProfileCart.style.display = "block"
+        loadingProfileCart.innerHtml = "Updating event..."
         function updateEvent () {
             eventCallendar.forEach(event => {
                 ///change below get body and include _id in the id see examples below.
@@ -171,6 +219,8 @@ function loadProfile () {
                     body: JSON.stringify(updateEventBE)
                 })
                 .then(function(response) {
+                    loadingProfileCart.style.display = "none"
+                    loadingProfileCart.innerHtml = ""
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                       }
@@ -218,61 +268,19 @@ function loadProfile () {
 
         cartDisplay.appendChild(aEventToDisplay)
     })
-    const profileDisplay = document.querySelector('.profile-container')
-    getProfile ()
-    function getProfile () {
-        const getProfileBE = {
-            profileEmailSignedIn: profileEmailSignedIn,
-            profileID: profileIDSignedIn,            
-        }
-        fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/profile/get/${profileIDSignedIn}/profile`, {
-            method: 'GET',
-            body: JSON.stringify(getProfileBE)
-        })
-        .then(function(response) {
-                let profileResponse = {
-                    profile_id: response.profileID,
-                    first_name: response.firstName,
-                    second_name: response.secondName,
-                    date_of_birth: response.dateOfBirth,
-                    phone_number: response.phoneNumber,
-                    house_number: response.houseNumber,
-                    street_name: response.streetName,
-                    city: response.city,
-                    county: response.county,
-                    country: response.country,
-                    post_code: response.postCode,
-                    email: response.email,
-                    role: response.role,
-                }
-                profileDisplay.innerHTML = `
-                <div id="${profileResponse.profile_id}">
-                    <h1>Your Profile</h1>
-                    <div>First Name: ${profileResponse.first_name}</div>
-                    <div>Second Name: ${profileResponse.second_name}</div>
-                    <div>Date Of Birth: ${profileResponse.date_of_birth}</div>
-                    <div>Phone Number: ${profileResponse.phone_number}</div>
-                    <div>House Number: ${profileResponse.house_number}</div>
-                    <div>Street Name: ${profileResponse.street_name}</div>
-                    <div>City: ${profileResponse.city}</div>
-                    <div>County: ${profileResponse.county}</div>
-                    <div>Country: ${profileResponse.country}</div>
-                    <div>Post Code: ${profileResponse.post_code}</div>
-                    <div>Email: ${profileResponse.email}</div>
-                    <div>Role: ${profileResponse.role}</div>
-                </div>
-                `
-            })
-            .catch(function(err) {
-                console.log("Error: ", err)
-            })
-    }
+    */
+    
+    /*
+
     document.querySelector('#delete-profile').addEventListener('click', function() {
-        
+                loadingProfileCart.style.display = "block"
+        loadingProfileCart.innerHtml = "Loading deleted profile..."
         fetch(`profile/delete/${profileIDSignedIn}`, {
             method: 'POST',
         })
         .then(function(response){ 
+            loadingProfileCart.style.display = "block"
+            loadingProfileCart.innerHtml = ""
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -309,7 +317,8 @@ function loadProfile () {
             profileSignedIn: false,
             _id: `${profileIDSignedIn}`,
         };
-
+        loadingProfileCart.style.display = "block"
+        loadingProfileCart.innerHtml = "signing you out..."
         fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/profile/put/${profileIDSignedIn}/signout`, {
           method: 'POST',
           headers: {
@@ -321,6 +330,8 @@ function loadProfile () {
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
+        loadingProfileCart.style.display = "none"
+        loadingProfileCart.innerHtml = ""
           return response.text();
         })
         .then(data => {

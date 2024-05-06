@@ -18,6 +18,11 @@
     padding: 0;
     margin: 0;
 }
+
+#center-form {
+    padding: 55px;
+}
+
 .phone-email-container {
     display: flex;
     justify-content: left;

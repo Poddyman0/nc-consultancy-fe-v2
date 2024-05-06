@@ -282,6 +282,9 @@ function signUpForm () {
 
             }
             if (hasUkPhoneNumber && hasEmail && hasFirstName && hasSecondName && hasDOB && isLengthValid && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar && password.value === passwordConfirmation.value && hasCardHolderName && hasBankName && hasCardNumber && hasExpiryDate && hasCVV && hasHouseNumber && hasStreet && hasCity && hasCountry && hasCounty && hasPostCode) {
+                const loadProfileSignUp = document.querySelector('#loading-profile-sign-up')
+                loadProfileSignUp.style.display = "block"
+                loadProfileSignUp.innerHTML = "Loading profile sign in..."
                 createProfile ()
                 function createProfile () {
                     const createProfileBE = {
@@ -318,6 +321,8 @@ function signUpForm () {
                         return response.json();
                         })
                         .then(data => {
+                            loadProfileSignUp.style.display = "none"
+                            loadProfileSignUp.innerHTML = ""
                         console.log('Success:', data);
                         })
                         .catch(error => {

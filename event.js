@@ -18,6 +18,9 @@ export let event;
 
 function loadEvent () {
     const eventDisplay = document.querySelector('.an-event-container')
+    const eventLoading = document.querySelector('#event-loading')
+    eventLoading.style.display = "block"
+    eventLoading.innerHTML = "Loading Event..."
     getEvent () 
     function getEvent () {
         fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/event/get/${eventIDToView}/aevent`, {
@@ -27,6 +30,8 @@ function loadEvent () {
             return response.json();
         })
         .then(function(response) {
+            eventLoading.style.display = "none"
+            eventLoading.innerHTML = ""
                 let eventResponse = {
                     event_id: response.eventID,
                     event_organiser: response.eventOrganiser,

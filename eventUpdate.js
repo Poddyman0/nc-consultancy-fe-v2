@@ -12,6 +12,9 @@ let atendeeArray = []
 
 
 function createEventForm(atendeeID, atendeeArray) {
+    const eventUpdateLoading = document.querySelector('#event-update-loading')
+    eventUpdateLoading.style.display = "none"
+    eventUpdateLoading.innerHTML = ""
  if (profileSignedIn.role === "internal") {
     const updateEventForm = document.querySelector('#middle-container-update-event')
     updateEventForm.innerHTML = `
@@ -94,6 +97,7 @@ function createEventForm(atendeeID, atendeeArray) {
     <div class="invalid-feedback update-event-post-code-feedback">
     </div>
   </div>
+  <label for="radio-inline-container-id">Event Pricing:</label>
   <fieldset class="form-group radio-inline-container" id="radio-inline-container-id">
                 <div class="custom-control custom-radio-inline">
                     <input class="custom-control-input" type="radio" name="pricingRadio" id="pricing-free-update" value="free">
@@ -209,6 +213,8 @@ function createEventForm(atendeeID, atendeeArray) {
 
     autoFillEventForm ()
     function autoFillEventForm () {
+        eventUpdateLoading.style.display = "block"
+        eventUpdateLoading.innerHTML = "Loading event to update..."
         fetch(`https://nc-events-platform-be-v2-production.up.railway.app/platform/event/get/${eventIDToView}/eventupdate`, {
             method: 'GET',
         })
@@ -216,6 +222,8 @@ function createEventForm(atendeeID, atendeeArray) {
             return response.json();
         })
         .then(function(response) {
+            eventUpdateLoading.style.display = "none"
+            eventUpdateLoading.innerHTML = ""
             eventOrganiser.value = response.eventOrganiser,
             eventName.value = response.eventName,
             eventDescription.value = response.eventDescription,
@@ -701,7 +709,10 @@ function createEventForm(atendeeID, atendeeArray) {
 
         if (hasEventOrganiser && hasEventName && hasEventDescription && hasEndDate && hasEndDate && hasEventEndTime && hasEventStartTime && hasHouseNumber && hasStreet && hasCity && hasCountry && hasCounty && hasEventTicketPrice && hasEventTicketAmount && hasEndTimeGreaterThanStartTime && hasEndDateGreaterOrEqaulToStartDate === "greater" && pricing !=="") {
             updateEvent ()
+
             function updateEvent () {
+                eventUpdateLoading.style.display = "block"
+                eventUpdateLoading.innerHTML = "Loading event update..."
                 const updateEventBE = {
                     eventID: unsure,
                     eventOrganiser: eventOrganiser.value,
@@ -731,6 +742,9 @@ function createEventForm(atendeeID, atendeeArray) {
                     body: JSON.stringify(updateEventBE)
                 })
                 .then(function(response) {
+                    eventUpdateLoading.style.display = "none"
+                    eventUpdateLoading.innerHTML = ""
+
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                       }

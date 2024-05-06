@@ -24,7 +24,7 @@
 }
 
 .profile-container {
-    padding-top: 10vh;
+    padding: 55px;
 }
 /*laptop*/
 @media (min-width: 1180px) { 
