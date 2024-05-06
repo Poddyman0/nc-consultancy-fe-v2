@@ -65,12 +65,8 @@
       </div>
     </div>
   </div>
-  <pre id="content_google" style="white-space: pre-wrap;"></pre>
-
-
     <div class="card-container">
     </div>
-
   
     <script type="text/javascript">
       /* exported gapiLoaded */
@@ -94,8 +90,6 @@
       const SCOPES = 'https://www.googleapis.com/auth/calendar.readonly';
 
 
-      //document.getElementById('authorize_button_google').style.visibility = 'hidden';
-      //document.getElementById('signout_button_google').style.visibility = 'hidden';
 
       /**
        * Callback after api.js is loaded.
@@ -166,7 +160,6 @@
         if (token !== null) {
           google.accounts.oauth2.revoke(token.access_token);
           gapi.client.setToken('');
-          document.getElementById('content_google').innerText = '';
           document.getElementById('authorize_button_google').innerText = 'Authorize';
           document.getElementById('signout_button_google').style.visibility = 'hidden';
         }

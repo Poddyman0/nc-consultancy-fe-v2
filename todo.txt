@@ -2,6 +2,19 @@
 front end:
 
 ront end:
+
+- go through each page and make it work on the back end
+- export from one js file to another. events to profile
+- change fetch requests to use correct params or body in back end.
+- tests (jest) - front end only
+- show if content is still loading.
+- mobile responsive
+- accessible
+- if anyone signed up, asnyone can add an event they've signed up for to for their callendar.
+- hosted for free (front end)
+- read me documentation (what coded and how)
+
+
 - BE: fix cors issue.
 needs to be hosted on same domain (if move to BE, change google to use same domane)
 
@@ -12,22 +25,6 @@ app.post("/api/profile/post", (req, res) -> {
     res.json(data)
 })
 failing that cors bypass plugin on chrome
-
-
-
-- export from one js file to another. events to event
-
-- change fetch requests to use correct params or body in back end.
-- tests (jest) - front end only
-
-
-- show if content is still loading.
-- mobile responsive
-- accessible
-- if anyone signed up, asnyone can add an event they've signed up for to for their callendar.
-- hosted for free (front end)
-- read me documentation (what coded and how)
-
 
 
 

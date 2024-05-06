@@ -75,7 +75,6 @@ function loadEvents() {
                         <button class="btn btn-danger card-btn" id="delete-event">Delete Event</button>
                        
                         <button class="btn btn-primary" style="width: 100%" value="${aEvent}" id="authorize_button-${aEvent._id}" >Add Event To Google Callendar</button>
-                        <button class="btn btn-primary" style="width: 100%" value="${aEvent}" id="signout_button-${aEvent._id}">Sign Out of Google Callendar</button>
                         <a class="btn btn-primary" style="width: 100%" id="content-${aEvent._id}">Link To Event Created On Google Callendar</a>
                         
                         <ul>
@@ -109,6 +108,7 @@ function loadEvents() {
                         //signUpToEventButtonExport = signUpToEventButton
                         addedToCartFeedback.innerHTML = ""
                         console.log("eventOBJ", aEvent._id)
+                        console.log()
                         if (ticketAmountPurchase.value.length === 0 || ticketAmountPurchase.value > aEvent.eventTicketAmount) {
                             ticketAmountPurchase.className = "form-control is-invalid"
                             addToCartAmountFeedback.innerHTML = "Amount of tickets purchased field must not be empty or be greater than the amount of tickets available"
@@ -121,19 +121,17 @@ function loadEvents() {
                         }
                     })
                     const authorizeButton = document.querySelector(`#authorize_button-${aEvent._id}`)
-                    authorizeButton.style.visibility = 'visible';
-                    const signOutButton = document.querySelector(`#signout_button-${aEvent._id}`)
-                    signOutButton.style.visibility = 'hidden';
                     const eventLinkButton = document.querySelector(`#content-${aEvent._id}`)
                     eventLinkButton.style.visibility = 'hidden';
-                    
+                    console.log("authorise button", authorizeButton)
+                    console.log("event google callendar confirmation", eventLinkButton)
+
                     /**
                      * Enables user interaction after all libraries are loaded.
                      */
                     //function maybeEnableButtons() {
                         if (gapiInited && gisInited) {
-                            console.log("in api and gis", gapiInited,  gisInited)
-                            authorizeButton.style.visibility = 'visible';
+                            console.log("in api and gis")
                         }
                    // }
 
@@ -146,7 +144,6 @@ function loadEvents() {
                         if (resp.error !== undefined) {
                             throw (resp);
                         }
-                        signOutButton.style.visibility = 'visible';
                         eventLinkButton.style.visibility = 'visible';
                         await createEventGoogleCallendar(eventToAddToCallendar)
                         };
@@ -165,17 +162,7 @@ function loadEvents() {
                     /**
                      *  Sign out the user upon button click.
                      */
-                    function handleSignoutClick() {
-                        console.log("in handle sign out")
-                        const token = gapi.client.getToken();
-                        if (token !== null) {
-                        google.accounts.oauth2.revoke(token.access_token);
-                        gapi.client.setToken('');
-                        eventLinkButton.style.visibility = 'hidden';
-                        authorizeButton.innerText = 'Add Event To Google Callendar';
-                        signOutButton.style.visibility = 'hidden';
-                        }
-                    }
+
                       /*
                         * Print the summary and start datetime/date of the next ten events in
                         * the authorized user's calendar. If no events are found an
