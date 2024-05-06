@@ -153,7 +153,7 @@ function loadEvents() {
                             const event = {
                                 'summary': `${aEvent.eventName}`,
                                 'location': `${aEvent.eventBuildingNumber}, ${aEvent.eventStreetName}, ${aEvent.eventCity}, ${aEvent.eventCounty}, ${aEvent.eventCountry}, ${aEvent.eventPostCode}`,
-                                'description': 'A walk in the woods',
+                                'description': `${aEvent.eventDescription}`,
                                 'start': {
                                   'dateTime': `${aEvent.eventStartDate}T${aEvent.eventStartTime}:00.000Z`,
                                   'timeZone': 'Europe/London'
