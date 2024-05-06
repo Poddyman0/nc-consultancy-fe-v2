@@ -139,13 +139,13 @@ function loadEvents() {
                      *  Sign in the user upon button click.
                      */
                     authorizeButton.addEventListener('click', function(event) {
-                        console.log("eventToAddCallendar", event.target.value)
+                        console.log("eventToAddCallendar", event.target.value._id)
                         tokenClient.callback = async (resp) => {
                         if (resp.error !== undefined) {
                             throw (resp);
                         }
                         eventLinkButton.style.visibility = 'visible';
-                        await createEventGoogleCallendar(eventToAddToCallendar)
+                        await createEventGoogleCallendar(aEvent)
                         };
 
                         if (gapi.client.getToken() === null) {
@@ -168,18 +168,18 @@ function loadEvents() {
                         * the authorized user's calendar. If no events are found an
                         * appropriate message is printed.
                         */
-                    async function createEventGoogleCallendar (eventToAddToCallendar) {
-                        console.log("in create event", eventToAddToCallendar)
+                    async function createEventGoogleCallendar (aEvent) {
+                        console.log("in create event", aEvent)
                         const event = {
-                            'summary': `${eventToAddToCallendar.eventName}`,
-                            'location': `${eventToAddToCallendar.eventBuildingNumber}, ${eventToAddToCallendar.eventStreetName}, ${eventToAddToCallendar.eventCity}, ${eventToAddToCallendar.eventCounty}, ${eventToAddToCallendar.eventCountry}, ${eventToAddToCallendar.eventPostCode}`,
+                            'summary': `${aEvent.eventName}`,
+                            'location': `${aEvent.eventBuildingNumber}, ${aEvent.eventStreetName}, ${aEvent.eventCity}, ${aEvent.eventCounty}, ${aEvent.eventCountry}, ${aEvent.eventPostCode}`,
                             'description': 'A walk in the woods',
                             'start': {
-                              'dateTime': `${eventToAddToCallendar.eventStartDate}`,
+                              'dateTime': `${aEvent.eventStartDate}`,
                               'timeZone': 'Europe/London'
                             },
                             'end': {
-                              'dateTime': `${eventToAddToCallendar.eventEndDate}`,
+                              'dateTime': `${aEvent.eventEndDate}`,
                               'timeZone': 'Europe/London'
                             }
                           };
