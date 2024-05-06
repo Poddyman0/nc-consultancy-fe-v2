@@ -339,3 +339,5 @@ function signUpForm () {
         };
     })   
 }
+
+module.exports = {signUpForm}

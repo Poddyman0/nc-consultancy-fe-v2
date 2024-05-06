@@ -121,3 +121,5 @@ function signInForm() {
     }
 
 }
+
+module.exports = {signInForm}

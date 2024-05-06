@@ -349,3 +349,5 @@ function getProfile () {
 
 
 */
+
+module.exports = {loadProfile}

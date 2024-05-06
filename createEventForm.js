@@ -471,5 +471,4 @@ function createEventForm(atendeeID, atendeeArray) {
     })
 }
 
-
-
+module.exports = {createEventForm, createEventForm, isValidDate, isStartTimeBeforeEndTime, isEndDateAfterOrSameAsStartDate}

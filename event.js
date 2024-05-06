@@ -167,3 +167,4 @@ function loadEvent () {
     }
 }
 
+module.exports = { loadEvent }

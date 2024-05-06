@@ -45,7 +45,7 @@ in js:
 */
 
 
-
+module.exports = {eventsInsert}
 
 
 
