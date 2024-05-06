@@ -149,17 +149,20 @@ function loadEvents() {
                         await createEventGoogleCallendar(aEvent)
                         async function createEventGoogleCallendar (aEvent) {
                             console.log("in create event", aEvent)
-
+                            const dateStartFormat = aEvent.eventStartDate.split('T')[0]
+                            const dateEndFormat = aEvent.eventEndDate.split('T')[0]
+                            const ISODateTimeStart = `${dateStartFormat}T${aEvent.eventStartTime}:00.000Z`
+                            const ISODateTimeEnd = `${dateEndFormat}T${aEvent.eventEndTime}:00.000Z`
                             const event = {
                                 'summary': `${aEvent.eventName}`,
                                 'location': `${aEvent.eventBuildingNumber}, ${aEvent.eventStreetName}, ${aEvent.eventCity}, ${aEvent.eventCounty}, ${aEvent.eventCountry}, ${aEvent.eventPostCode}`,
                                 'description': `${aEvent.eventDescription}`,
                                 'start': {
-                                  'dateTime': `${aEvent.eventStartDate}T${aEvent.eventStartTime}:00.000Z`,
+                                  'dateTime': `${ISODateTimeStart}`,
                                   'timeZone': 'Europe/London'
                                 },
                                 'end': {
-                                  'dateTime': `${aEvent.eventEndDate}T${aEvent.eventEndTime}:00.000Z`,
+                                  'dateTime': `${ISODateTimeEnd}`,
                                   'timeZone': 'Europe/London'
                                 }
                               };
